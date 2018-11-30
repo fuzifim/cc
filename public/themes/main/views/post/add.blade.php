@@ -221,7 +221,7 @@ max-width:100%!important;
 	</div>
 </div>
 @partial('footer') 
-<?
+<?php
 	$dependencies = array(); 
 	Theme::asset()->add('core-style-fontaweasome', 'https://use.fontawesome.com/releases/v5.3.1/css/all.css');
 	Theme::asset()->add('core-style-summernote', 'https://summernote.org/vendors/summernote/dist/summernote-bs4.css');
@@ -477,7 +477,7 @@ max-width:100%!important;
 			$(".addSelectSubRegion").empty(); 
 			$(".addSelectSubRegion").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải thành phố, vui lòng chờ...</small></div>"); 
 			$.ajax({
-				url: "https://'.config('app.url').'/json/subregion/"+idRegion,
+				url: "//'.config('app.url').'/json/subregion/"+idRegion,
 				type: "GET",
 				dataType:"json",
 				cache: false,

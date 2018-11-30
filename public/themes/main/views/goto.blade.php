@@ -1,4 +1,4 @@
-<?
+<?php
 	Theme::setTitle('Url Redirect'); 
 	Theme::setNoindex('NOINDEX,NOFOLLOW'); 
 	if($note->type=='site'){
@@ -47,7 +47,7 @@
 		</div>
 	</div>
 </div> 
-<?
+<?php
 	$dependencies = array(); 
 	Theme::asset()->writeScript('loadLazy','
 		var redirUrl=jQuery.parseJSON(jQuery("#json-url").html());

@@ -1,4 +1,4 @@
-<?
+<?php
 if(AppHelper::instance()->checkWordCC($note->title)){
 	Theme::setTitle(config('app.name').' '.htmlspecialchars($note->title)); 
 }else{
@@ -225,10 +225,10 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 					<div class="alert alert-info">
 						<strong>Cung cấp</strong> thông tin liên quan đến <strong>{!!$note->title!!}</strong> bao gồm các trang web, hình ảnh, video, tin tức, sản phẩm, dịch vụ... 
 						@if(count($getNoteRelate)>0)
-							<?
+							<?php
 								$a=0; 
 							?>
-							<p>Bạn có thể xem các thông tin chi tiết về @foreach($getNoteRelate as $item)<?$a++;?>@if($a<=5 && $item->id!=$note->id){{$item->title}}, @endif @endforeach</p> 
+							<p>Bạn có thể xem các thông tin chi tiết về @foreach($getNoteRelate as $item)<?php $a++;?>@if($a<=5 && $item->id!=$note->id){{$item->title}}, @endif @endforeach</p>
 						@endif
 						<p><strong>Best regards! </strong></p>
 					</div>
@@ -242,7 +242,7 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 				@if(count($getNoteRelate)>0)
 					<div class="siteList form-group">
 						<ul class="list-group"> 
-							<? $k=0; ?>
+							<?php $k=0; ?>
 							@foreach($getNoteRelate as $item)
 								@if($item->type=='site' && $item->id!=$note->id)
 									<li class="list-group-item">
@@ -255,10 +255,10 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 						</ul>
 					</div>
 					<div class="form-group">
-						<? $a=0; ?>
+						<?php $a=0; ?>
 						@foreach($getNoteRelate as $item)
 							@if($item->type=='image') 
-								<? $a++;?>
+								<?php $a++;?>
 								@if($a==1)
 								<img class="img-fluid" id="showImageLarge" src="https:{{$item->attribute['image']}}" alt="{{$item->title}}" title="{{$item->title}}"> 
 								<h5><a class="text-light" id="showImageLargeLink" href="{{route('go.to',array(config('app.url'),$item->id,str_slug($item->title, '-')))}}" rel="nofollow" target="blank"><span class="text-light">{{$item->title}}</span></a></h5>
@@ -268,10 +268,10 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 					</div> 
 					<div class="form-group">
 						<div class="row row-pad-5">
-						<? $b=0; ?>
+						<?php $b=0; ?>
 						@foreach($getNoteRelate as $item)
 							@if($item->type=='image') 
-								<? $b++;?>
+								<?php $b++;?>
 								@if($b<=6)
 								<div class="col col-md-2 mb-2">
 									<a class="showImageLink" href="https:{{$item->attribute['image']}}" data-image="https:{{$item->attribute['image']}}" data-title="{!!$item->title!!}" data-url="{{route('go.to',array(config('app.url'),$item->id,str_slug($item->title, '-')))}}"><img class="img-fluid" src="https:{{$item->attribute['thumb']}}" alt="{{$item->title}}" title="{{$item->title}}"></a> 
@@ -321,7 +321,7 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 	</div>
 </div> 
 @partial('footer') 
-<?
+<?php
 	$dependencies = array(); 
 	Theme::asset()->writeScript('loadLazy',' 
 		$(".siteLink").click(function(){

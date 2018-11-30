@@ -1,4 +1,4 @@
-<?
+<?php
 if(AppHelper::instance()->checkWordCC($note->title)){
 	Theme::setTitle(config('app.name').' '.htmlspecialchars($note->title)); 
 }else{
@@ -91,7 +91,7 @@ Theme::set('appendHeader', $string);
 				</div>
 				@endif
 				<div class="form-group">
-					<? $a=0; ?>
+					<?php $a=0; ?>
 					@foreach($getNote as $item)
 						@if($item['type']=='image') 
 							<? $a++;?>
@@ -104,10 +104,10 @@ Theme::set('appendHeader', $string);
 				</div> 
 				<div class="form-group" id="thumbImage">
 					<div class="row row-pad-5">
-					<? $b=0;$activeAdsAfterImage='false'; ?>
+					<?php $b=0;$activeAdsAfterImage='false'; ?>
 					@foreach($getNote as $item)
 						@if($item['type']=='image') 
-							<? $b++;$activeAdsAfterImage='true';?>
+							<?php $b++;$activeAdsAfterImage='true';?>
 							@if($b<=6)
 							<div class="col col-md-2 mb-2">
 								<a class="showImageLink" href="https:{{$item['attribute']['image']}}" data-image="https:{{$item['attribute']['image']}}" data-title="{{$item['title']}}" data-url="{{route('go.to',array(config('app.url'),$item['_id'],str_slug($item['title'], '-')))}}"><img class="img-fluid" src="https:{{$item['attribute']['thumb']}}" alt="{{$item['title']}}" title="{{$item['title']}}"></a> 
@@ -137,19 +137,22 @@ Theme::set('appendHeader', $string);
 				@endif
 				<div class="siteList">
 					<ul class="list-group"> 
-						<? $k=0; $textDescription='';?>
+						<?php
+							$k=0;
+							$textDescription='';
+						?>
 						@foreach($getNote as $item)
 							@if($item['type']=='site')
-								<? $k++; ?>
+								<?php $k++; ?>
 								@if($k==1 && !Theme::has('description'))
-									<? $textDescription.=(str_replace("\n", "", str_replace("\r", "", $item['title'])));?> 
-								@endif 
+									<?php $textDescription.=(str_replace("\n", "", str_replace("\r", "", $item['title'])));?>
+								@endif
 								@if($k==2 && !Theme::has('description'))
-									<? $textDescription.=', '.(str_replace("\n", "", str_replace("\r", "", $item['title'])));?> 
-								@endif 
+									<?php $textDescription.=', '.(str_replace("\n", "", str_replace("\r", "", $item['title'])));?>
+								@endif
 								@if($k==3 && !Theme::has('description'))
-									<? $textDescription.=', '.(str_replace("\n", "", str_replace("\r", "", $item['title'])));?> 
-								@endif 
+									<?php $textDescription.=', '.(str_replace("\n", "", str_replace("\r", "", $item['title'])));?>
+								@endif
 								@if($activeAdsAfterImage=='false' && $k==3)
 									<div class="form-group mt-2">
 										<ins class="adsbygoogle"
@@ -168,11 +171,11 @@ Theme::set('appendHeader', $string);
 									<p>{{$item['description']}} </p>
 								</li>
 							@endif
-						@endforeach 
+						@endforeach
 						@if(!empty($note->description))
-							<?Theme::setDescription($note->description);?> 
+							<?php Theme::setDescription($note->description);?>
 						@elseif(!empty($textDescription))
-							<?
+							<?php
 								$note->description=str_slug($note->title, ' ').', '.$textDescription; 
 								$note->save(); 
 								Theme::setDescription(str_slug($note->title, ' ').', '.$textDescription);
@@ -247,7 +250,7 @@ Theme::set('appendHeader', $string);
 	</div>
 </div> 
 @partial('footer') 
-<?
+<?php
 	$dependencies = array(); 
 	Theme::asset()->writeScript('loadLazy',' 
 		$(".siteLink").click(function(){

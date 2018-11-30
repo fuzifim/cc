@@ -1,4 +1,4 @@
-<?
+<?php
 Theme::setTitle('Đăng nhập'); 
 Theme::setSearch('Đăng nhập'); 
 Theme::setSearchDisable('disable'); 
@@ -46,7 +46,7 @@ Theme::setCanonical(route('login',array(config('app.url'))));
     </div>
   </div>
 @partial('footer') 
-<?
+<?php
 	Theme::asset()->themePath()->add('style-gritter', 'library/gritter/jquery.gritter.css'); 
 	Theme::asset()->themePath()->add('js-gritter', 'library/gritter/jquery.gritter.min.js'); 
 	Theme::asset()->themePath()->add('js-validate', 'js/jquery.validate.min.js');

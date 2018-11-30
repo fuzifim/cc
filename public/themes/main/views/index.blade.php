@@ -1,4 +1,4 @@
-<?
+<?php
 	Theme::setTitle(config('app.name')); 
 	Theme::setDescription('Cung Cấp đến mọi người ⭐ ⭐ ⭐ ⭐ ⭐'); 
 	Theme::setImage('https://'.config('app.url').'/cungcap.png'); 
@@ -20,7 +20,7 @@
 					<div class="card-body p-2">
 						@if(!empty($noteRelated['media']) && count($noteRelated['media']) && !empty($noteRelated['media'][0]['url_xs']))
 							<a class="image" href="{{route('post.show',array(config('app.url'),$noteRelated['_id'],str_slug($noteRelated['title'], '-')))}}">
-								<img src="{{$noteRelated['media'][0]['url_xs']}}" class="float-left mr-2 lazy" width="150" alt="{{$noteRelated['title']}}" title="{{$noteRelated['title']}}">
+								<img src="{{$noteRelated['media'][0]['url_xs']}}" class="float-left mr-2 lazy img-thumbnail" width="150" alt="{{$noteRelated['title']}}" title="{{$noteRelated['title']}}">
 							</a>
 						@endif
 						<p><strong><a class="title" href="{{route('post.show',array(config('app.url'),$noteRelated['_id'],str_slug($noteRelated['title'], '-')))}}">{{$noteRelated['title']}}</a></strong></p>

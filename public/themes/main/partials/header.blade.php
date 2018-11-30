@@ -50,7 +50,7 @@
 		</div>
 	</div>
 </form>
-<?
+<?php
 	$dependencies = array(); 
 	Theme::asset()->writeScript('searchAll','
 		if($("#searchAll").length>0){ 

@@ -18,25 +18,14 @@ use AppHelper;
 use Redirect; 
 use DB; 
 use Auth;
+use Imagick;
 class TestController extends ConstructController
 {
 	public function __construct(){
 		parent::__construct(); 
 	}
 	public function test(Request $request){
-		$getNote=Note::where('type','user')->where('update_time','!=',1)->limit(100)->get(); 
-		dd($getNote); 
-		foreach($getNote as $note){
-			dd($note); 
-			//$created_at=Carbon::parse($note->created_at)->format('Y-m-d H:i:s'); 
-			//$updated_at=Carbon::parse($note->updated_at)->format('Y-m-d H:i:s'); 
-			//$note->created_at=new \MongoDB\BSON\UTCDateTime(new \DateTime($created_at)); 
-			//$note->updated_at=new \MongoDB\BSON\UTCDateTime(new \DateTime($updated_at)); 
-			$note->update_time=1; 
-			$note->save(); 
-			//dd($note);
-			echo $note->name.'<p>';
-		}
+        phpinfo();
 	}
 	public function testqeqwe(Request $request){
 		dd($_SERVER['HTTP_USER_AGENT']); 

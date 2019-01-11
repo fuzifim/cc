@@ -1,5 +1,7 @@
+/log
 /node_modules
 /public/hot
+/public/media
 /public/storage
 /storage/*.key
 /vendor

@@ -225,7 +225,11 @@ max-width:100%!important;
 	$dependencies = array(); 
 	Theme::asset()->add('core-style-fontaweasome', 'https://use.fontawesome.com/releases/v5.3.1/css/all.css');
 	Theme::asset()->add('core-style-summernote', '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css');
+<<<<<<< HEAD
 	Theme::asset()->add('core-js-summernote', '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js');
+=======
+	Theme::asset()->add('core-js-summernote', '//cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js'); 
+>>>>>>> 930ca71faceb5e742ade35552da8b36d53e640a5
 	Theme::asset()->add('js-select2-cdn', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js');
 	Theme::asset()->add('style-select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css');
 	Theme::asset()->themePath()->add('style-flags', 'library/flags/flags.min.css'); 

@@ -1,4 +1,4 @@
-<?
+<?php
 Theme::setTitle('Danh sách kênh của tôi'); 
 Theme::setSearch('channel:active'); 
 Theme::setSearchDisable('disable'); 
@@ -48,7 +48,7 @@ Theme::setType('website');
 	</div>
 </div> 
 @partial('footer') 
-<?
+<?php
 	Theme::asset()->themePath()->add('style-gritter', 'library/gritter/jquery.gritter.css'); 
 	Theme::asset()->themePath()->add('js-gritter', 'library/gritter/jquery.gritter.min.js');
 	$dependencies = array(); 

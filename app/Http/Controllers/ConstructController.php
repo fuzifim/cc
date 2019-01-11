@@ -17,7 +17,7 @@ class ConstructController extends Controller
 	public $_pieces; 
 	public function __construct(){
 		$this->_parame=Route::current()->parameters(); 
-		$this->_rulesDomain = Cache::store('file')->remember('rulesDomain',500, function()
+		$this->_rulesDomain = Cache::store('file')->rememberForever('rulesDomain', function()
 		{
 			$pdp_url = 'https://raw.githubusercontent.com/publicsuffix/list/master/public_suffix_list.dat';
 			$rules = \Pdp\Rules::createFromPath($pdp_url); 

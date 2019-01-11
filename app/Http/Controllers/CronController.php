@@ -76,8 +76,7 @@ class CronController extends ConstructController
 			if(Carbon::parse($getJob->updated_at)->addSecond(10)->format('Y-m-d H:i:s') < Carbon::now()->format('Y-m-d H:i:s')){
 				$getJob->updated_at=Carbon::now()->format('Y-m-d H:i:s'); 
 				$getJob->save(); 
-				$getNote=Index_note::where('type','domain')->where('status','pending')->where('replay','<',2)->limit(2)->get(); 
-				//dd($getNote); 
+				$getNote=Index_note::where('type','domain')->where('status','pending')->where('replay','<',2)->limit(2)->get();
 				foreach($getNote as $note){ 
 					$this->_domain=$note->domain; 
 					$this->_link='http://'.$note->domain;

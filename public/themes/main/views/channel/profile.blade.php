@@ -43,9 +43,9 @@
 				@if(!empty($channel->banner) && count($channel->banner))
 					<div id="carouselExampleControls" class="carousel slide form-group" data-ride="carousel">
 					  <div class="carousel-inner">
-						{{$i=0}}
+						<?php $i=0; ?>
 						@foreach($channel->banner as $media)
-							{{$i++}}
+							<?php $i++; ?>
 							<div class="carousel-item @if($i==1) active @endif">
 							  <img class="d-block w-100" src="{{$media['url_thumb']}}" alt="">
 							</div>

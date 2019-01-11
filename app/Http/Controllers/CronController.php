@@ -42,8 +42,9 @@ class CronController extends ConstructController
 		parent::__construct(); 
 	}
 	public function index(){
-		return false;
+		//return false;
 		if($this->_parame['type']=='index_elasticsearch'){
+		    return false;
 			//$getNote=Index_elastic::where('type','post')->where('index','!=',1)->where('status','active')->limit(500)->get(); 
 			$getNote=Index_elastic::
 				//where('status','active')

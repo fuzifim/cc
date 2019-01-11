@@ -1,5 +1,4 @@
-<?
-
+<?php
 Theme::setSearch($keyword); 
 Theme::setType('website'); 
 if(AppHelper::instance()->checkBlacklistWord($keyword) && count($searchProduct)>0){
@@ -39,25 +38,25 @@ if(!empty($type) && $type=='category'){
 ?>
 @partial('header') 
 @if(!empty($type) && $type=='category' && count($getNote))
-	<? $k=0; $textDescription='';?>
+	<?php $k=0; $textDescription='';?>
 	@foreach($getNote as $item)
 		@if($item['type']=='site')
-			<? $k++; ?>
+			<?php $k++; ?>
 			@if($k==1 && !Theme::has('description'))
-				<? $textDescription.=(str_replace("\n", "", str_replace("\r", "", $item['title'])));?> 
+				<?php $textDescription.=(str_replace("\n", "", str_replace("\r", "", $item['title'])));?>
 			@endif 
 			@if($k==2 && !Theme::has('description'))
-				<? $textDescription.=', '.(str_replace("\n", "", str_replace("\r", "", $item['title'])));?> 
+				<?php $textDescription.=', '.(str_replace("\n", "", str_replace("\r", "", $item['title'])));?>
 			@endif 
 			@if($k==3 && !Theme::has('description'))
-				<? $textDescription.=', '.(str_replace("\n", "", str_replace("\r", "", $item['title'])));?> 
+				<?php $textDescription.=', '.(str_replace("\n", "", str_replace("\r", "", $item['title'])));?>
 			@endif 
 		@endif
 	@endforeach 
 	@if(!empty($note->description))
-		<?Theme::setDescription($note->description);?> 
+		<?php Theme::setDescription($note->description);?>
 	@elseif(!empty($textDescription))
-		<?
+		<?php
 			$note->description=str_slug($note->title, ' ').', '.$textDescription; 
 			$note->save(); 
 			Theme::setDescription(str_slug($note->title, ' ').', '.$textDescription);
@@ -92,11 +91,11 @@ if(!empty($type) && $type=='category'){
 			</div>
 			<div class="form-group">
 				<ul class="list-group"> 
-					<?
+					<?php
 						$i=0; 
 					?>
 					@foreach($searchProduct as $item)
-					<?
+					<?php
 						$i++; 
 						if($item['type']=='category'){
 							$link=route('show.category',array(config('app.url'),str_replace(' ','+',$item['title']))); 
@@ -203,10 +202,10 @@ if(!empty($type) && $type=='category'){
 				<div class="alert alert-info">
 					<strong>Cung cấp</strong> thông tin liên quan đến <strong>{!!$note->title!!}</strong> bao gồm các trang web, hình ảnh, video, tin tức, sản phẩm, dịch vụ... 
 					@if(count($getNote)>0)
-						<?
+						<?php
 							$a=0; 
 						?>
-						<p>Bạn có thể xem các thông tin chi tiết về @foreach($getNote as $item)<?$a++;?>@if($a<=5 && $item['_id']!=$note->id && !empty($item['title'])){{$item['title']}}, @endif @endforeach</p> 
+						<p>Bạn có thể xem các thông tin chi tiết về @foreach($getNote as $item)<?php $a++;?>@if($a<=5 && $item['_id']!=$note->id && !empty($item['title'])){{$item['title']}}, @endif @endforeach</p>
 					@endif
 				</div>
 			</div>
@@ -229,7 +228,7 @@ if(!empty($type) && $type=='category'){
 	</div>
   </div>
 @partial('footer') 
-<?
+<?php
 	$dependencies = array(); 
 	Theme::asset()->writeScript('loadLazy',' 
 	', $dependencies);

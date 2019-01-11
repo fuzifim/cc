@@ -1,4 +1,4 @@
-<?
+<?php
 	Theme::setTitle($note->title); 
 	Theme::setSearch($note->title); 
 	if(!empty($note->media) && count($note->media) && $note->media[0]['type']=='image'){
@@ -20,9 +20,9 @@ pre{background:#f1f0f0;padding:10px;}
 					<div class="card-body p-2">
 						<div id="carouselExampleControls" class="carousel slide form-group" data-ride="carousel">
 						  <div class="carousel-inner">
-							<?$i=0;?>
+							<?php $i=0;?>
 							@foreach($note->media as $media)
-								<?$i++;?>
+								<?php $i++;?>
 								@if($media['type']=='image')
 									<div class="carousel-item @if($i==1) active @endif">
 									  <img class="d-block w-100" src="{{$media['url_thumb']}}" alt="">
@@ -81,7 +81,7 @@ pre{background:#f1f0f0;padding:10px;}
 						<h1 itemprop="name">
 							{!!$note->title!!}
 							@if(Auth::check())
-								<?
+								<?php
 									$user=Auth::user(); 
 								?>
 								@if($user->id==$note->user_id)
@@ -95,7 +95,7 @@ pre{background:#f1f0f0;padding:10px;}
 							</div>
 						</div>
 						@if(!empty($note->tags))
-							<?
+							<?php
 							$tagArray=explode(',',$note->tags); 
 							?>
 							<div class="form-group">
@@ -191,7 +191,7 @@ pre{background:#f1f0f0;padding:10px;}
 	</div>
 </div>
 @partial('footer') 
-<?
+<?php
 	$dependencies = array(); 
 	Theme::asset()->writeScript('loadLazy',' 
 		if($(".postContent .prettyprint").length){

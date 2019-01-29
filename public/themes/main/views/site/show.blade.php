@@ -132,7 +132,7 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 }
 ?>
 @partial('header') 
-@if($activeAds=='true')
+@if($activeAds=='true' && config('app.env')!=='local')
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({
@@ -175,7 +175,7 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 						<p class="card-text">{{$note->description}}</p>
 					</div>
 				</div> 
-				@if($activeAds=='true')
+				@if($activeAds=='true' && config('app.env')!=='local')
 				<div class="form-group">
 					<ins class="adsbygoogle"
 						 style="display:block"
@@ -284,7 +284,7 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 				@endif
 			</div>
 			<div class="col-md-4"> 
-				@if($activeAds=='true')
+				@if($activeAds=='true' && config('app.env')!=='local')
 				<div class="card form-group">
 					<ins class="adsbygoogle"
 						 style="display:block"

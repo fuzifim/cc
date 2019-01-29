@@ -51,16 +51,9 @@ pre{background:#f1f0f0;padding:10px;}
 					</div>
 				</div>
 				@endif
-				<div class="form-group">
-					<ins class="adsbygoogle"
-						 style="display:block"
-						 data-ad-client="ca-pub-6739685874678212"
-						 data-ad-slot="7536384219"
-						 data-ad-format="auto"></ins>
-					<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
-				</div>
+				@if(config('app.env')!=='local')
+					@section('adsense_1')
+				@endif
 				<div class="card form-group">
 					<div class="card-body p-2">
 						<div class="form-group">
@@ -123,16 +116,9 @@ pre{background:#f1f0f0;padding:10px;}
 					</div>
 				</div>
 				@if(count($getNoteRelate)>=3)
-					<div class="form-group">
-						<ins class="adsbygoogle"
-							 style="display:block"
-							 data-ad-client="ca-pub-6739685874678212"
-							 data-ad-slot="7536384219"
-							 data-ad-format="auto"></ins>
-						<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-						</script>
-					</div>
+					@if(config('app.env')!=='local')
+						@section('adsense_1')
+					@endif
 					<h5 class="text-light">Bài khác cùng người đăng</h5>
 					@foreach($getNoteRelate->chunk(3) as $chunk)
 					@if(count($chunk)>=3)
@@ -158,16 +144,9 @@ pre{background:#f1f0f0;padding:10px;}
 				@endif
 			</div>
 			<div class="col-md-4">
-				<div class="form-group">
-					<ins class="adsbygoogle"
-						 style="display:block"
-						 data-ad-client="ca-pub-6739685874678212"
-						 data-ad-slot="7536384219"
-						 data-ad-format="auto"></ins>
-					<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
-				</div>
+				@if(config('app.env')!=='local')
+					@section('adsense_1')
+				@endif
 				@if(count($notePostNew))
 					<h5 class="text-light">Bài đăng mới</h5>
 					<div class="list-group">

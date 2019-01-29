@@ -24,8 +24,9 @@ class TestController extends ConstructController
 	public function __construct(){
 		parent::__construct(); 
 	}
-	public function test(Request $request){
-        phpinfo();
+	public function test(){
+        $jobs=Note::where('type','ip')->orderBy('created_at','desc')->limit(5)->get();
+        dd($jobs);
 	}
 	public function testqeqwe(Request $request){
 		dd($_SERVER['HTTP_USER_AGENT']); 

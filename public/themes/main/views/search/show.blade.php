@@ -70,7 +70,7 @@ if(!empty($type) && $type=='category'){
 #status{width:30px;height:30px;position:absolute;left:50%;top:50%;margin:-15px 0 0 -15px;font-size:32px;}
 #preloaderInBox{position:absolute;top:0;left:0;width:100%;height:100%;background-color:#e4e7ea;z-index:10000;opacity:0.8;}
 </style>
-@if($ads=='true')
+@if($ads=='true' && config('app.env')!=='local')
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<script>
 		 (adsbygoogle = window.adsbygoogle || []).push({
@@ -158,7 +158,7 @@ if(!empty($type) && $type=='category'){
 							<small>{{str_limit(strip_tags(html_entity_decode($item['content']),''), $limit = 255, $end = '...')}}</small>
 						@endif
 					</li>
-					@if($i==3 && $ads=='true')
+					@if($i==3 && $ads=='true' && config('app.env')!=='local')
 						<div class="form-group mt-2">
 							<ins class="adsbygoogle"
 								 style="display:block"
@@ -173,7 +173,7 @@ if(!empty($type) && $type=='category'){
 					@endforeach
 				</ul>
 			</div>
-			@if($ads=='true')
+			@if($ads=='true' && config('app.env')!=='local')
 				<div class="form-group">
 					<ins class="adsbygoogle"
 						 style="display:block"
@@ -212,7 +212,7 @@ if(!empty($type) && $type=='category'){
 			@endif
 		</div>
 		<div class="col-12 col-md-4">
-			@if($ads=='true')
+			@if($ads=='true' && config('app.env')!=='local')
 				<div class="form-group">
 					<ins class="adsbygoogle"
 						 style="display:block"

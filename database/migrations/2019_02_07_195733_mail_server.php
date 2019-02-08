@@ -14,7 +14,7 @@ class MailServer extends Migration
     public function up()
     {
         Schema::create('mail_server', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('name',255)->nullable();
             $table->string('type',255)->nullable();
             $table->integer('user_id');

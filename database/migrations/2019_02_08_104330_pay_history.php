@@ -14,7 +14,7 @@ class PayHistory extends Migration
     public function up()
     {
         Schema::create('pay_history', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('token',300)->nullable();
             $table->integer('price');
             $table->string('payment_method',25)->nullable();

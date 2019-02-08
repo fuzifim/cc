@@ -14,7 +14,7 @@ class Subregions extends Migration
     public function up()
     {
         Schema::create('subregions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('region_id');
             $table->string('subregions_name',255)->nullable();
             $table->string('long_name',255)->nullable();

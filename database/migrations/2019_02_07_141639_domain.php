@@ -14,7 +14,7 @@ class Domain extends Migration
     public function up()
     {
         Schema::create('domain', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('domain',255)->nullable();
             $table->string('domain_title',255)->nullable();
             $table->string('domain_description',255)->nullable();

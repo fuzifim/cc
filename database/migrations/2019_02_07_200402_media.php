@@ -14,7 +14,7 @@ class Media extends Migration
     public function up()
     {
         Schema::create('media', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('member_id');
             $table->string('media_name',255)->nullable();
             $table->string('media_id_random',255)->nullable();

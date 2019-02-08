@@ -14,7 +14,7 @@ class Regions extends Migration
     public function up()
     {
         Schema::create('regions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('iso',45)->nullable();
             $table->string('iso3',45)->nullable();
             $table->string('fips',45)->nullable();

@@ -14,7 +14,7 @@ class Hosting extends Migration
     public function up()
     {
         Schema::create('hosting', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('name',255)->nullable();
             $table->string('type',255)->nullable();
             $table->longText('content')->nullable();

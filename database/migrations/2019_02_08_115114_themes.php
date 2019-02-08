@@ -14,7 +14,7 @@ class Themes extends Migration
     public function up()
     {
         Schema::create('themes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('temp_name',255)->nullable();
             $table->text('temp_content')->nullable();
             $table->string('temp_location',255)->nullable();

@@ -14,7 +14,7 @@ class Keywords extends Migration
     public function up()
     {
         Schema::create('keywords', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('keyword',255)->nullable();
             $table->string('keyword_encode',255)->nullable();
             $table->string('slug',255)->nullable();

@@ -14,7 +14,7 @@ class Likes extends Migration
     public function up()
     {
         Schema::create('likes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->enum('like_type', ['like','unlike']);
             $table->string('like_table',255)->nullable();
             $table->integer('table_parent_id');

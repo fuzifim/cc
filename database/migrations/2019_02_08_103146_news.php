@@ -14,7 +14,7 @@ class News extends Migration
     public function up()
     {
         Schema::create('news', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('title',255)->nullable();
             $table->string('title_convert',255)->nullable();
             $table->string('title_encode',255)->nullable();

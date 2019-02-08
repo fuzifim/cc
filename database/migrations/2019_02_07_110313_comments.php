@@ -14,7 +14,7 @@ class Comments extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('parent_id');
             $table->mediumText('content');
             $table->enum('status', ['pending', 'active','faild','delete']);

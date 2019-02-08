@@ -14,7 +14,7 @@ class Phone extends Migration
     public function up()
     {
         Schema::create('phone', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('phone_number',255)->nullable();
             $table->timestamps();
         });

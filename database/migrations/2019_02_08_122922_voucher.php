@@ -14,7 +14,7 @@ class Voucher extends Migration
     public function up()
     {
         Schema::create('voucher', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('description',255)->nullable();
             $table->string('voucher_type',255)->nullable();
             $table->integer('discount');

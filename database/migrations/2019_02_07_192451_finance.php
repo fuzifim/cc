@@ -14,7 +14,7 @@ class Finance extends Migration
     public function up()
     {
         Schema::create('finance', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('money',255)->nullable();
             $table->string('currency_code',255)->nullable();
             $table->enum('pay_type', ['main', 'product','post']);

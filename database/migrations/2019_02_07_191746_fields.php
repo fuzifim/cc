@@ -14,7 +14,7 @@ class Fields extends Migration
     public function up()
     {
         Schema::create('fields', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('name',255)->nullable();
             $table->string('SolrID',500)->nullable();
             $table->integer('parent_id');

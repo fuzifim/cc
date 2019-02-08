@@ -14,7 +14,7 @@ class Channel extends Migration
     public function up()
     {
         Schema::create('channel', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('channel_name',255)->nullable();
             $table->mediumText('channel_description')->nullable();
             $table->string('channel_keywords',255)->nullable();

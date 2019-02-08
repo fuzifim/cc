@@ -14,7 +14,7 @@ class CartOrder extends Migration
     public function up()
     {
         Schema::create('cart_order', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('order_table',255)->nullable();
             $table->integer('table_parent_id');
             $table->enum('status', ['pending', 'active','delete','billing']);

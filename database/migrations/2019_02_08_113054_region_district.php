@@ -14,7 +14,7 @@ class RegionDistrict extends Migration
     public function up()
     {
         Schema::create('region_district', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('subregions_id');
             $table->string('district_name',255)->nullable();
             $table->string('long_name',255)->nullable();

@@ -14,7 +14,7 @@ class Address extends Migration
     public function up()
     {
         Schema::create('address', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('address',500)->nullable();
             $table->string('address_full',500)->nullable();
             $table->enum('status', ['active', 'pending','delete']);

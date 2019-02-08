@@ -14,7 +14,7 @@ class Email extends Migration
     public function up()
     {
         Schema::create('email', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('email_address',255)->nullable();
             $table->enum('email_status', ['pending', 'active','delete']);
             $table->timestamps();

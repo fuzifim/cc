@@ -14,7 +14,7 @@ class Company extends Migration
     public function up()
     {
         Schema::create('company', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('company_name',255)->nullable();
             $table->string('name_encode',300)->nullable();
             $table->string('company_name_en',255)->nullable();

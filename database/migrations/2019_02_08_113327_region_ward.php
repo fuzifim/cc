@@ -14,7 +14,7 @@ class RegionWard extends Migration
     public function up()
     {
         Schema::create('region_ward', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('region_district_id');
             $table->string('ward_name',255)->nullable();
             $table->string('SolrID',255)->nullable();

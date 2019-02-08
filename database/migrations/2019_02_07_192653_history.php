@@ -14,7 +14,7 @@ class History extends Migration
     public function up()
     {
         Schema::create('history', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('history_type',255)->nullable();
             $table->integer('parent_id');
             $table->string('description',255)->nullable();

@@ -14,7 +14,7 @@ class MessageSms extends Migration
     public function up()
     {
         Schema::create('message_sms', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('type',255)->nullable();
             $table->string('message_group',255)->nullable();
             $table->string('from',255)->nullable();

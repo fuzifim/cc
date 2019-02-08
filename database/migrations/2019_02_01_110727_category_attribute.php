@@ -16,7 +16,7 @@ class CategoryAttribute extends Migration
         Schema::create('category_attribute', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('channel_id')->unsigned();
-            $table->foreign('channel_id')->references('id')->on('channel_id')->onDelete('cascade');
+            $table->foreign('channel_id')->references('id')->on('channel')->onDelete('cascade');
             $table->integer('parent_id');
             $table->string('attribute_type',255)->nullable();
             $table->mediumText('attribute_value')->nullable();

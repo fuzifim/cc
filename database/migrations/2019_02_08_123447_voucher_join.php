@@ -18,7 +18,7 @@ class VoucherJoin extends Migration
             $table->string('join_table',255)->nullable();
             $table->integer('table_parent_id');
             $table->integer('voucher_parent_id')->unsigned();
-            $table->foreign('voucher_parent_id')->references('id')->on('voucher_parent_id')->onDelete('cascade');
+            $table->foreign('voucher_parent_id')->references('id')->on('voucher')->onDelete('cascade');
             $table->timestamps();
         });
     }

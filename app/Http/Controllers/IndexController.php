@@ -59,7 +59,7 @@ class IndexController extends ConstructController
                 $this->_domain=$fixDomain;
                 return $this->domainShow();
 			}else if($this->_siteType=='infoChannel'){
-			    $data=array();
+			    $data=array(); 
                 return Theme::view('home', $data);
             }
 		}

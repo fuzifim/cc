@@ -1,32 +1,32 @@
 <?
 	if(!empty($channel['info']->getSeo->channel_attribute_value)){
-		$seoJson=json_decode($channel['info']->getSeo->channel_attribute_value); 
+		$seoJson=json_decode($channel['info']->getSeo->channel_attribute_value);
 		if(!empty($seoJson->metaTitle)){
-			$metaTitle=$seoJson->metaTitle; 
+			$metaTitle=$seoJson->metaTitle;
 		}else{
-			$metaTitle=$channel['info']->channel_name; 
+			$metaTitle=$channel['info']->channel_name;
 		}
 		if(!empty($seoJson->metaDescription)){
-			$metaDescription=$seoJson->metaDescription; 
+			$metaDescription=$seoJson->metaDescription;
 		}else{
 			$metaDescription=$channel['info']->channel_description;
 		}
 	}else{
-		$metaTitle=$channel['info']->channel_name; 
+		$metaTitle=$channel['info']->channel_name;
 		$metaDescription=$channel['info']->channel_description;
-	} 
+	}
 	$channel['theme']->setTitle(html_entity_decode($metaTitle));
 	if(!empty($channel['info']->channel_keywords)){
 		$channel['theme']->setKeywords($channel['info']->channel_keywords);
 	}else{
 		$channel['theme']->setKeywords(html_entity_decode($metaTitle));
 	}
-	$channel['theme']->setDescription(str_limit(strip_tags(html_entity_decode($metaDescription),""), $limit = 250, $end='...')); 
+	$channel['theme']->setDescription(str_limit(strip_tags(html_entity_decode($metaDescription),""), $limit = 250, $end='...'));
 	//$channel['theme']->setCanonical(route("channel.home",$channel["domainPrimary"]));
 	if(count($channel['info']->channelAttributeBanner)>0 && !empty($channel['info']->channelAttributeBanner[0]->media->media_name)){
 		$channel['theme']->setImage(config('app.link_media').$channel['info']->channelAttributeBanner[0]->media->media_path.$channel['info']->channelAttributeBanner[0]->media->media_name);
 	}else{
-		$channel['theme']->setImage('http://'.$channel["domainPrimary"].Theme::asset()->url('img/cungcap.jpg')); 
+		$channel['theme']->setImage('http://'.$channel["domainPrimary"].Theme::asset()->url('img/cungcap.jpg'));
 	}
 ?>
 {!!Theme::asset()->container('footer')->usePath()->add('jquery', 'js/jquery-1.11.1.min.js', array('core-script'))!!}
@@ -39,7 +39,7 @@
 {!!Theme::asset()->container('footer')->usePath()->add('jquery.validate.min', 'js/jquery.validate.min.js', array('core-script'))!!}
 {!!Theme::asset()->container('footer')->usePath()->add('swiper.min', 'library/swiper/js/swiper.min.js', array('core-script'))!!}
 @if(Auth::check())
-	
+
 @endif
 @if($channel['security']==true)
 	{!!Theme::asset()->add('summernote', 'assets/js/summernote/dist/summernote.css', array('core-style'))!!}
@@ -48,20 +48,20 @@
 	{!!Theme::asset()->container('footer')->add('summernote-vi-VN', 'assets/js/summernote/lang/summernote-vi-VN.js', array('core-script'))!!}
 	{!!Theme::asset()->container('footer')->usePath()->add('jquery.tagsinput.min', 'js/jquery.tagsinput.min.js', array('core-script'))!!}
 	<?
-		$dependencies = array(); 
+		$dependencies = array();
 		$channel['theme']->asset()->writeScript('changeChannel','
 			jQuery(document).ready(function(){
-				"use strict"; 
+				"use strict";
 				$(".groupChannelName").on("click",".btnChannelNameEdit",function() {
-					var channelNameText=$(this).parent().closest(".groupChannelName").find(".channelNameText"); 
-					var channelDescriptionText=$(this).parent().closest(".groupChannelName").find(".channelDescriptionText"); 
-					var channelKeywordsInput=$(this).parent().closest(".groupChannelName").find(".channelKeywordsInput"); 
-					var changeChannelNameText=$(this).parent().closest(".groupChannelName").find(".changeChannelNameText"); 
-					var channelName=$(this).attr("data-name"); 
-					var channelDescription=channelDescriptionText.html(); 
-					var channelKeywords=channelKeywordsInput.val(); 
-					channelNameText.hide(); 
-					changeChannelNameText.show(); 
+					var channelNameText=$(this).parent().closest(".groupChannelName").find(".channelNameText");
+					var channelDescriptionText=$(this).parent().closest(".groupChannelName").find(".channelDescriptionText");
+					var channelKeywordsInput=$(this).parent().closest(".groupChannelName").find(".channelKeywordsInput");
+					var changeChannelNameText=$(this).parent().closest(".groupChannelName").find(".changeChannelNameText");
+					var channelName=$(this).attr("data-name");
+					var channelDescription=channelDescriptionText.html();
+					var channelKeywords=channelKeywordsInput.val();
+					channelNameText.hide();
+					changeChannelNameText.show();
 					changeChannelNameText.append("<form id=\"changeChannelName\">"
 						+"<div class=\"form-group\">"
 							+"<input type=\"phone\" style=\"font-size:18px;\" name=\"channelName\" value=\""+channelName+"\" class=\"form-control\" placeholder=\"Nhập tên công ty, cửa hàng, tên website...\" required />"
@@ -79,13 +79,13 @@
 							+"<button type=\"submit\" class=\"btn btn-xs btn-primary btnSaveChannelName\" data-id=\"\"><i class=\"fa fa-check\"></i> Lưu</button> "
 							+"<button type=\"button\" class=\"btn btn-xs btn-default btnCancelChannelname\">Hủy</button>"
 						+"</div>"
-						+"</form>"); 
+						+"</form>");
 					jQuery(".groupChannelName #changeChannelName #channelKeywords").tagsInput({
 						placeholderColor:"#999",
 						width:"auto",
 						height:"auto",
 						"defaultText":"thêm từ..."
-					}); 
+					});
 					var $validator = jQuery(".groupChannelName #changeChannelName").validate({
 						highlight: function(element) {
 						  jQuery(element).closest(".form-group").removeClass("has-success").addClass("has-error");
@@ -100,11 +100,11 @@
 							$validator.focusInvalid();
 							return false;
 						}else{
-							$(".groupChannelName #preloaderInBox").css("display", "block"); 
+							$(".groupChannelName #preloaderInBox").css("display", "block");
 							var formData = new FormData();
-							formData.append("channelName", $(".groupChannelName #changeChannelName input[name=channelName]").val()); 
-							formData.append("channelDescription", $(".groupChannelName #changeChannelName textarea[name=channelDescription]").val()); 
-							formData.append("channelKeywords", $(".groupChannelName #changeChannelName input[name=channelKeywords]").val()); 
+							formData.append("channelName", $(".groupChannelName #changeChannelName input[name=channelName]").val());
+							formData.append("channelDescription", $(".groupChannelName #changeChannelName textarea[name=channelDescription]").val());
+							formData.append("channelKeywords", $(".groupChannelName #changeChannelName input[name=channelKeywords]").val());
 							$.ajax({
 								url: "'.route("channel.name.save",$channel["domain"]->domain).'",
 								headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
@@ -115,20 +115,20 @@
 								data: formData,
 								dataType:"json",
 								success:function(result){
-									$(".groupChannelName #preloaderInBox").css("display", "none"); 
+									$(".groupChannelName #preloaderInBox").css("display", "none");
 									if(result.success==true){
 										jQuery.gritter.add({
 											title: "Thông báo!",
-											text: result.msg, 
+											text: result.msg,
 											class_name: "growl-success",
 											sticky: false,
 											time: ""
 										});
-										location.reload(); 
+										location.reload();
 									}else{
 										jQuery.gritter.add({
 											title: "Thông báo!",
-											text: result.msg, 
+											text: result.msg,
 											class_name: "growl-danger",
 											sticky: false,
 											time: ""
@@ -151,7 +151,7 @@
 									["remove", ["removeMedia"]]
 								],
 							},
-							lang: "vi-VN", 
+							lang: "vi-VN",
 							imageAttributes:{
 								imageDialogLayout:"default", // default|horizontal
 								icon:"<i class=\"note-icon-pencil\"/>",
@@ -163,10 +163,10 @@
 								linkBasic:true,   // show/hide URL and Target fields for link
 								linkExtra:false   // show/hide Class, Rel, Role fields for link
 							},
-							placeholder: "Bạn đang viết gì? ", 
-							dialogsInBody: true, 
+							placeholder: "Bạn đang viết gì? ",
+							dialogsInBody: true,
 							focus: true,
-							minHeight: 150,   //set editable area"s height 
+							minHeight: 150,   //set editable area"s height
 							enterHtml: "<br>",
 							//height:250,
 							//minHeight:null,
@@ -176,7 +176,7 @@
 							],
 							codemirror: { // codemirror options
 								theme: "monokai"
-							}, 
+							},
 							callbacks: {
 								onImageUpload: function (files){
 										uploadImage(files[0]);
@@ -184,14 +184,14 @@
 							}
 					});
 					return false;
-				}); 
+				});
 				$(".groupChannelName").on("click",".btnCancelChannelname",function() {
-					var channelNameText=$(this).parent().closest(".groupChannelName").find(".channelNameText"); 
-					var changeChannelNameText=$(this).parent().closest(".groupChannelName").find(".changeChannelNameText"); 
-					channelNameText.show(); 
-					changeChannelNameText.empty(); 
-				}); 
-			}); 
+					var channelNameText=$(this).parent().closest(".groupChannelName").find(".channelNameText");
+					var changeChannelNameText=$(this).parent().closest(".groupChannelName").find(".changeChannelNameText");
+					channelNameText.show();
+					changeChannelNameText.empty();
+				});
+			});
 		', $dependencies);
 	?>
 @endif
@@ -231,13 +231,13 @@
 						<button type="button" tabindex="500" class="btn btn-xs btn-primary btn-file"><i class="glyphicon glyphicon-camera"></i>&nbsp;  <span>Thêm ảnh bìa</span><input id="changeImageCove" name="changeImageCove" type="file" multiple="" class=""></button>
 					</div>
 					<?
-						$dependencies = array(); 
+						$dependencies = array();
 						$channel['theme']->asset()->writeScript('changeBanner', '
 							jQuery(document).ready(function(){
-							"use strict"; 
+							"use strict";
 							jQuery(".section-banner").hover(function(){
 								var t = jQuery(this);
-								t.find(".groupChangeBanner").show(); 
+								t.find(".groupChangeBanner").show();
 								t.find(".delBannerChannel").show();
 								t.find(".btn-file").show();
 							}, function() {
@@ -247,14 +247,14 @@
 								t.find(".btn-file").hide();
 							});
 							$("#changeImageCove").bind("change", function(){
-								$(".section-banner #preloaderInBox").css("display", "block"); 
-								var files = $("#changeImageCove").prop("files")[0];  
+								$(".section-banner #preloaderInBox").css("display", "block");
+								var files = $("#changeImageCove").prop("files")[0];
 								var formData = new FormData();
-								formData.append("file", files); 
-								formData.append("postType", "banner");  
+								formData.append("file", files);
+								formData.append("postType", "banner");
 								$.ajax({
 									url: "'.route("channel.upload.file",$channel["domain"]->domain).'",
-									type: "post", 
+									type: "post",
 									headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 									cache: false,
 									contentType: false,
@@ -262,14 +262,14 @@
 									data: formData,
 									dataType:"json",
 									success:function(result){
-										//console.log(result); 
+										//console.log(result);
 										if(result.success==true){
 											var formDataChannel = new FormData();
-											formDataChannel.append("channelAttributeType", "banner"); 
-											formDataChannel.append("channelAttributeValue", result.id); 
+											formDataChannel.append("channelAttributeType", "banner");
+											formDataChannel.append("channelAttributeValue", result.id);
 											$.ajax({
 												url: "'.route("channel.attribute.media.add",$channel["domain"]->domain).'",
-												type: "post", 
+												type: "post",
 												headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 												cache: false,
 												contentType: false,
@@ -277,13 +277,13 @@
 												data: formDataChannel,
 												dataType:"json",
 												success:function(resultMedia){
-													$(".section-banner #preloaderInBox").css("display", "none"); 
-													location.reload(); 
+													$(".section-banner #preloaderInBox").css("display", "none");
+													location.reload();
 												},
-												error: function(resultMedia) { 
+												error: function(resultMedia) {
 													jQuery.gritter.add({
 														title: "Thông báo!",
-														text: "Lỗi không thể thêm ảnh! ", 
+														text: "Lỗi không thể thêm ảnh! ",
 														class_name: "growl-danger",
 														sticky: false,
 														time: ""
@@ -293,17 +293,17 @@
 										}else{
 											jQuery.gritter.add({
 												title: "Thông báo!",
-												text: result.msg, 
+												text: result.msg,
 												class_name: "growl-danger",
 												sticky: false,
 												time: ""
 											});
 										}
 									},
-									error: function(result) { 
+									error: function(result) {
 										jQuery.gritter.add({
 											title: "Thông báo!",
-											text: "Lỗi không thể tải ảnh! ", 
+											text: "Lỗi không thể tải ảnh! ",
 											class_name: "growl-danger",
 											sticky: false,
 											time: ""
@@ -312,14 +312,14 @@
 								});
 							});
 							$("#channelBanner").on("click",".delBannerChannel",function() {
-								$(".section-banner #preloaderInBox").css("display", "block"); 
-								var mediaId= $(this).attr("data-id"); 
+								$(".section-banner #preloaderInBox").css("display", "block");
+								var mediaId= $(this).attr("data-id");
 								var formData = new FormData();
-								formData.append("mediaId", mediaId); 
-								formData.append("channelAttributeType", "banner"); 
+								formData.append("mediaId", mediaId);
+								formData.append("channelAttributeType", "banner");
 								$.ajax({
 									url: "'.route("channel.attribute.media.delete",$channel["domain"]->domain).'",
-									type: "post", 
+									type: "post",
 									headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 									cache: false,
 									contentType: false,
@@ -327,32 +327,32 @@
 									data: formData,
 									dataType:"json",
 									success:function(result){
-										//console.log(result); 
+										//console.log(result);
 										if(result.success==true){
-											//getChannelAttributeImageCover(); 
-											$(".section-banner #preloaderInBox").css("display", "none"); 
-											location.reload(); 
+											//getChannelAttributeImageCover();
+											$(".section-banner #preloaderInBox").css("display", "none");
+											location.reload();
 										}else{
 											jQuery.gritter.add({
 												title: "Thông báo!",
-												text: result.message, 
+												text: result.message,
 												class_name: "growl-danger",
 												sticky: false,
 												time: ""
 											});
 										}
 									},
-									error: function(result) { 
+									error: function(result) {
 										jQuery.gritter.add({
 											title: "Thông báo!",
-											text: "Không thể xóa! ", 
+											text: "Không thể xóa! ",
 											class_name: "growl-danger",
 											sticky: false,
 											time: ""
 										});
 									}
-								}); 
-								return false; 
+								});
+								return false;
 							});
 						});
 						', $dependencies);
@@ -375,25 +375,25 @@
 							<img class="imageShow img-responsive bannerSite lazy" src="@if(!empty($banner->media->media_name)){{config('app.link_media').$banner->media->media_path.$banner->media->media_name}}@endif" url-lg="{{config('app.link_media').$banner->media->media_path.$banner->media->media_name}}" alt="{!!$channel['info']->channel_name!!}">
 						</div>
 						@endforeach
-						
+
 					</div>
 					@if(count($channel['info']->channelAttributeBanner)>=2)
 					<?
-						$dependencies = array(); 
+						$dependencies = array();
 						$channel['theme']->asset()->writeScript('groupCarouselControl', '
 							jQuery(document).ready(function(){
-							"use strict"; 
-							$(".groupCarouselControl").show(); 
+							"use strict";
+							$(".groupCarouselControl").show();
 						});
 						', $dependencies);
 					?>
 					@else
 						<?
-							$dependencies = array(); 
+							$dependencies = array();
 							$channel['theme']->asset()->writeScript('groupCarouselControl', '
 								jQuery(document).ready(function(){
-								"use strict"; 
-								$(".groupCarouselControl").hide(); 
+								"use strict";
+								$(".groupCarouselControl").hide();
 							});
 							', $dependencies);
 						?>
@@ -430,8 +430,8 @@
 						</li>
 						<li class="stepwizard-step">
 							<a class="btn btn-default btn-circle disabled"  href="#vtab3" data-toggle="tab">3</a>
-						</li> 
-						
+						</li>
+
 						<li class="stepwizard-step">
 							<a class="btn btn-default btn-circle disabled"href="#vtab4" data-toggle="tab">4</a>
 						</li>
@@ -444,7 +444,7 @@
 							<div class="tab-pane" id="vtab1">
 								<?
 									if(Session::has('channelDomain')){
-										$channelDomain=Session::get('channelDomain'); 
+										$channelDomain=Session::get('channelDomain');
 									}
 								?>
 								<div class="form-group">
@@ -459,12 +459,12 @@
 							<div class="tab-pane" id="vtab2">
 								<div class="row-pad-5 pricingGroup">
 								<?
-									$getService=\App\Model\Services::find(2); 
-									
+									$getService=\App\Model\Services::find(2);
+
 								?>
 								@foreach($getService->attributeAll as $attribute)
 									<?
-										$attributeJson=json_decode($attribute->attribute_value); 
+										$attributeJson=json_decode($attribute->attribute_value);
 									?>
 									<div class="col-xs-12 col-sm-6 col-md-4 appendpricing">
 										<div class="list-group-item btn pricingPackge @if($attribute->id==19) active @endif">
@@ -480,7 +480,7 @@
 													<h1 class="nopadding nomargin"><strong>{{Site::price($attribute->price_re_order+$attribute->price_order)}} <sup>đ</sup></strong></h1>
 												/ {{$attribute->per}}
 												@endif
-												
+
 											</div>
 											<div class="price-features">
 												<ul class="list-group">
@@ -502,7 +502,7 @@
 							<div class="tab-pane" id="vtab3">
 								<?
 									if(Session::has('channelInfo')){
-										$channelInfo=Session::get('channelInfo'); 
+										$channelInfo=Session::get('channelInfo');
 									}
 								?>
 								<div class="form-group">
@@ -515,7 +515,7 @@
 							<div class="tab-pane" id="vtab4">
 								<?
 									if(Session::has('channelRegion')){
-										$channelRegion=Session::get('channelRegion'); 
+										$channelRegion=Session::get('channelRegion');
 									}
 								?>
 								<div class="form-group">
@@ -613,13 +613,13 @@
 				</div>
 			</div><!-- panel -->
 			<?
-				$dependencies = array(); 
-				$channel['theme']->asset()->writeScript('custom',' 
+				$dependencies = array();
+				$channel['theme']->asset()->writeScript('custom','
 				function convertToSlug(title)
 				{
 				  //Đổi chữ hoa thành chữ thường
 					slug = title.toLowerCase();
-				 
+
 					//Đổi ký tự có dấu thành không dấu
 					slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, "a");
 					slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, "e");
@@ -642,7 +642,7 @@
 					slug = "@" + slug + "@";
 					slug = slug.replace(/\@\-|\-\@|\@/gi, "");
 					//In slug ra textbox có id “slug”
-					
+
 				  return slug;
 				}
 				$("#channelDomain").keyup(function () {
@@ -650,15 +650,15 @@
 						var appendDomain="'.$channel['domainPrimary'].'";
 						$("#changeDomain").html("http://"+convertToSlug($(this).val())+"."+appendDomain);
 					}else{
-						$("#changeDomain").empty(); 
+						$("#changeDomain").empty();
 					}
 				});
 				$(".appendpricing").on("click",".pricingPackge",function() {
-					$(".appendpricing .pricingPackge").not(this).removeClass("active"); 
+					$(".appendpricing .pricingPackge").not(this).removeClass("active");
 					$(".appendpricing .pricingPackge").not(this).find("input").prop("checked",false);
 					$(this).addClass("active");
 					$(this).find("input").prop("checked",true);
-				}); 
+				});
 				function getPackge(){
 					$.ajax({
 						url: "'.route('channel.packge.json',$channel['domainPrimary']).'",
@@ -680,7 +680,7 @@
 											+"<input type=\"radio\" class=\"hidden\" value=\""+item.id+"\" name=\"channelPackge\" checked>"
 										+"</div>"
 									+"</div>"
-								+"</div>"); 
+								+"</div>");
 								}else{
 									$(".appendPackge").append("<div class=\"col-lg-4 col-md-4 col-sm-6 col-xs-12\">"
 									+"<div class=\"form-group\">"
@@ -695,57 +695,57 @@
 											+"<input type=\"radio\" class=\"hidden\" value=\""+item.id+"\" name=\"channelPackge\">"
 										+"</div>"
 									+"</div>"
-								+"</div>"); 
+								+"</div>");
 								}
-							}); 
+							});
 						}
 					});
 				}
-				getPackge(); 
+				getPackge();
 				$(".appendPackge").on("click",".packgeCheck",function() {
-					$(".appendPackge .packgeCheck").not(this).removeClass("active"); 
+					$(".appendPackge .packgeCheck").not(this).removeClass("active");
 					$(".appendPackge .packgeCheck").not(this).find("input").prop("checked",false);
 					$(this).addClass("active");
 					$(this).find("input").prop("checked",true);
-				}); 
-				getFields(); 
-				getRegions(); 
+				});
+				getFields();
+				getRegions();
 				$(".addSelectRegion").on("change",".selectRegion",function() {
-					getSubregion($(this).val()); 
-					getDistrict(0); 
-					getWard(0); 
-					$("input[name=regionIso]").val($(this).find("option:selected").attr("data-iso")); 
-					$("input[name=idRegion]").val($(this).val()); 
-					$("input[name=idSubRegion]").val(0); 
-					$("input[name=idDistrict]").val(0); 
+					getSubregion($(this).val());
+					getDistrict(0);
+					getWard(0);
+					$("input[name=regionIso]").val($(this).find("option:selected").attr("data-iso"));
+					$("input[name=idRegion]").val($(this).val());
+					$("input[name=idSubRegion]").val(0);
+					$("input[name=idDistrict]").val(0);
 				});
 				$(".addSelectSubRegion").on("change",".selectSubRegion",function() {
-					getDistrict($(this).val()); 
+					getDistrict($(this).val());
 					getWard(0);
-					$("input[name=idSubRegion]").val($(this).val()); 
-					$("input[name=idDistrict]").val(0); 
+					$("input[name=idSubRegion]").val($(this).val());
+					$("input[name=idDistrict]").val(0);
 				});
 				$(".addSelectDistrict").on("change",".selectDistrict",function() {
-					getWard($(this).val()); 
-					$("input[name=idDistrict]").val($(this).val()); 
-					$("input[name=idWard]").val(0); 
+					getWard($(this).val());
+					$("input[name=idDistrict]").val($(this).val());
+					$("input[name=idWard]").val(0);
 				});
 				$(".addSelectWard").on("change",".selectWard",function() {
-					$("input[name=idWard]").val($(this).val()); 
+					$("input[name=idWard]").val($(this).val());
 				});
 				function getFields(){
-					$(".addFields").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải lĩnh vực, vui lòng chờ...</small></div>"); 
+					$(".addFields").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải lĩnh vực, vui lòng chờ...</small></div>");
 					$.ajax({
 						url: "'.route('channel.json.fields',$channel['domainPrimary']).'",
 						type: "GET",
 						dataType: "json",
 						success: function (result) {
-							$(".addFields .loading").empty(); 
+							$(".addFields .loading").empty();
 							$(".addFields").append("<select class=\"selectField\" data-placeholder=\"Chọn lĩnh vực hoạt động...\" name=\"channelFields\" multiple required>"
-								+"<option value=\"\"></option></select><label class=\"error\" for=\"channelFields\"></label>"); 
+								+"<option value=\"\"></option></select><label class=\"error\" for=\"channelFields\"></label>");
 							$.each(result.fields, function(i, item) {
 								$(".addFields .selectField").append("<option value="+item.id+">"+item.name+"</option>");
-							}); 
+							});
 							jQuery(".addFields .selectField").select2({
 								width: "100%"
 							});
@@ -753,24 +753,24 @@
 					});
 				}
 				function getRegions(){
-					$(".addSelectRegion").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải quốc gia, vui lòng chờ...</small></div>"); 
+					$(".addSelectRegion").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải quốc gia, vui lòng chờ...</small></div>");
 					$.ajax({
 						url: "'.route("regions.json.list",$channel["domainPrimary"]).'",
 						type: "GET",
 						dataType: "json",
 						success: function (result) {
-							$(".addSelectRegion .loading").empty(); 
+							$(".addSelectRegion .loading").empty();
 							if(result.success==true){
-								getSubregion($("input[name=idRegion]").val()); 
+								getSubregion($("input[name=idRegion]").val());
 								$(".addSelectRegion").append("<div class=\"input-group\"><span class=\"input-group-addon\"><i class=\"flag flag-"+$("input[name=regionIso]").val()+"\"></i></span><select class=\"selectRegion\" data-placeholder=\"Chọn quốc gia...\" name=\"channelRegion\" required>"
-								+"<option value=\"\"></option></select></div><label class=\"error\" for=\"channelRegion\"></label>"); 
+								+"<option value=\"\"></option></select></div><label class=\"error\" for=\"channelRegion\"></label>");
 								$.each(result.region, function(i, item) {
 									if(item.id==$("input[name=idRegion]").val()){
 										$(".addSelectRegion .selectRegion").append("<option value="+item.id+" data-icon=\"flag-"+item.iso.toLowerCase()+"\"  data-iso="+item.iso.toLowerCase()+" selected>"+item.country+"</option>");
 									}else{
 										$(".addSelectRegion .selectRegion").append("<option value="+item.id+"  data-icon=\"flag-"+item.iso.toLowerCase()+"\"  data-iso="+item.iso.toLowerCase()+" >"+item.country+"</option>");
 									}
-								}); 
+								});
 								function format(icon) {
 									var originalOption = icon.element;
 									return "<i class=\"flag " + $(originalOption).data("icon") + "\"></i> " + icon.text;
@@ -780,16 +780,16 @@
 									formatResult: format
 								});
 							}else{
-								
+
 							}
 						}
 					});
-				} 
+				}
 				function getSubregion(idRegion){
-					$(".addSelectSubRegion").empty(); 
-					$(".addSelectSubRegion").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải thành phố, vui lòng chờ...</small></div>"); 
+					$(".addSelectSubRegion").empty();
+					$(".addSelectSubRegion").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải thành phố, vui lòng chờ...</small></div>");
 					var formData = new FormData();
-					formData.append("idRegion", idRegion); 
+					formData.append("idRegion", idRegion);
 					$.ajax({
 						url: "'.route("subregion.json.list.post",$channel["domainPrimary"]).'",
 						type: "POST",
@@ -800,19 +800,19 @@
 						data:formData,
 						headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 						success: function (result) {
-							$(".addSelectSubRegion .loading").empty(); 
-							$(".addSelectRegion .input-group-addon").html("<i class=\"flag flag-"+$("input[name=regionIso]").val()+"\"></i>"); 
+							$(".addSelectSubRegion .loading").empty();
+							$(".addSelectRegion .input-group-addon").html("<i class=\"flag flag-"+$("input[name=regionIso]").val()+"\"></i>");
 							if(result.success==true){
-								getDistrict($("input[name=idSubRegion]").val()); 
+								getDistrict($("input[name=idSubRegion]").val());
 								$(".addSelectSubRegion").append("<select class=\"selectSubRegion\" data-placeholder=\"Chọn thành phố...\" name=\"channelSubRegion\">"
-								+"<option value=\"\"></option></select><label class=\"error\" for=\"channelSubRegion\"></label>"); 
+								+"<option value=\"\"></option></select><label class=\"error\" for=\"channelSubRegion\"></label>");
 								$.each(result.subregion, function(i, item) {
 									if(item.id==$("input[name=idSubRegion]").val()){
 										$(".addSelectSubRegion .selectSubRegion").append("<option value="+item.id+" selected>"+item.subregions_name+"</option>");
 									}else{
 										$(".addSelectSubRegion .selectSubRegion").append("<option value="+item.id+">"+item.subregions_name+"</option>");
 									}
-								}); 
+								});
 								function format(icon) {
 									var originalOption = icon.element;
 									return "<i class=\"fa fa-map-marker\"></i> " + icon.text;
@@ -822,16 +822,16 @@
 									formatResult: format
 								});
 							}else{
-								$(".addSelectSubRegion").empty(); 
+								$(".addSelectSubRegion").empty();
 							}
 						}
 					});
 				}
 				function getDistrict(idSubRegion){
-					$(".addSelectDistrict").empty(); 
-					$(".addSelectDistrict").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải quận huyện, vui lòng chờ...</small></div>"); 
+					$(".addSelectDistrict").empty();
+					$(".addSelectDistrict").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải quận huyện, vui lòng chờ...</small></div>");
 					var formData = new FormData();
-					formData.append("idSubRegion", idSubRegion); 
+					formData.append("idSubRegion", idSubRegion);
 					$.ajax({
 						url: "'.route("district.json.list.post",$channel["domainPrimary"]).'",
 						type: "POST",
@@ -842,18 +842,18 @@
 						data:formData,
 						headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 						success: function (result) {
-							$(".addSelectDistrict .loading").empty(); 
+							$(".addSelectDistrict .loading").empty();
 							if(result.success==true){
-								getWard($("input[name=idDistrict]").val()); 
+								getWard($("input[name=idDistrict]").val());
 								$(".addSelectDistrict").append("<select class=\"selectDistrict\" data-placeholder=\"Chọn quận huyện...\" name=\"channelDistrict\">"
-									+"<option value=\"\"></option></select><label class=\"error\" for=\"channelDistrict\"></label>"); 
+									+"<option value=\"\"></option></select><label class=\"error\" for=\"channelDistrict\"></label>");
 								$.each(result.district, function(i, item) {
 									if(item.id=='.$channel['info']->channelJoinSubRegion->subregion->id.'){
 										$(".addSelectDistrict .selectDistrict").append("<option value="+item.id+" selected>"+item.district_name+"</option>");
 									}else{
 										$(".addSelectDistrict .selectDistrict").append("<option value="+item.id+">"+item.district_name+"</option>");
 									}
-								}); 
+								});
 								function format(icon) {
 									var originalOption = icon.element;
 									return "<i class=\"fa fa-map-marker\"></i> " + icon.text;
@@ -863,16 +863,16 @@
 									formatResult: format
 								});
 							}else{
-								$(".addSelectDistrict").empty(); 
+								$(".addSelectDistrict").empty();
 							}
 						}
 					});
 				}
 				function getWard(idDistrict){
-					$(".addSelectWard").empty(); 
-					$(".addSelectWard").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải phường xã, vui lòng chờ...</small></div>"); 
+					$(".addSelectWard").empty();
+					$(".addSelectWard").append("<div class=\"loading\"><small><i class=\"fa fa-spinner fa-spin\"></i> đang tải phường xã, vui lòng chờ...</small></div>");
 					var formData = new FormData();
-					formData.append("idDistrict", idDistrict); 
+					formData.append("idDistrict", idDistrict);
 					$.ajax({
 						url: "'.route("ward.json.list.post",$channel["domainPrimary"]).'",
 						type: "POST",
@@ -883,18 +883,18 @@
 						data:formData,
 						headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 						success: function (result) {
-							//console.log(result); 
-							$(".addSelectWard .loading").empty(); 
+							//console.log(result);
+							$(".addSelectWard .loading").empty();
 							if(result.success==true){
 								$(".addSelectWard").append("<select class=\"selectWard\" data-placeholder=\"Chọn phường xã...\" name=\"channelWard\">"
-									+"<option value=\"\"></option></select><label class=\"error\" for=\"channelWard\"></label>"); 
+									+"<option value=\"\"></option></select><label class=\"error\" for=\"channelWard\"></label>");
 								$.each(result.ward, function(i, item) {
 									if(item.id=='.$channel['info']->channelJoinSubRegion->subregion->id.'){
 										$(".addSelectWard .selectWard").append("<option value="+item.id+" selected>"+item.ward_name+"</option>");
 									}else{
 										$(".addSelectWard .selectWard").append("<option value="+item.id+">"+item.ward_name+"</option>");
 									}
-								}); 
+								});
 								function format(icon) {
 									var originalOption = icon.element;
 									return "<i class=\"fa fa-map-marker\"></i> " + icon.text;
@@ -904,7 +904,7 @@
 									formatResult: format
 								});
 							}else{
-								$(".addSelectWard").empty(); 
+								$(".addSelectWard").empty();
 							}
 						}
 					});
@@ -929,14 +929,14 @@
 								$validator.focusInvalid();
 								return false;
 							}else{
-								var move = false; 
+								var move = false;
 								if(index==1){
-									$(".previous").removeClass("hidden"); 
-									$(".textNext").text("Tiếp tục"); 
-									var channelDomain=$("input[name=channelDomain]").val(); 
+									$(".previous").removeClass("hidden");
+									$(".textNext").text("Tiếp tục");
+									var channelDomain=$("input[name=channelDomain]").val();
 									var formData = new FormData();
-									formData.append("channelDomain", channelDomain); 
-									$("#validationWizard #preloaderInBox").css("display", "block"); 
+									formData.append("channelDomain", channelDomain);
+									$("#validationWizard #preloaderInBox").css("display", "block");
 									$.ajax({
 										url: "'.route("channel.add.step1",$channel["domainPrimary"]).'",
 										type: "POST",
@@ -947,18 +947,18 @@
 										data:formData,
 										headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 										success: function (result) {
-											console.log(result); 
+											console.log(result);
 											if(result.success==true){
-												move= true; 
-												$("#validationWizard #preloaderInBox").css("display", "none"); 
-												$("#validationWizard").bootstrapWizard("show",index); 
+												move= true;
+												$("#validationWizard #preloaderInBox").css("display", "none");
+												$("#validationWizard").bootstrapWizard("show",index);
 												$("html, body").animate({scrollTop: $("#validationWizard").offset().top}, "slow");
 											}else{
-												$("#validationWizard #preloaderInBox").css("display", "none");  
-												move=false; 
+												$("#validationWizard #preloaderInBox").css("display", "none");
+												move=false;
 												jQuery.gritter.add({
 													title: "Thông báo!",
-													text: result.message, 
+													text: result.message,
 													class_name: "growl-danger",
 													sticky: false,
 													time: ""
@@ -967,11 +967,11 @@
 										}
 									});
 								}else if(index==2){
-									$(".textNext").text("Tiếp tục"); 
-									var channelPackge=$("input[name=channelPackge]").val(); 
+									$(".textNext").text("Tiếp tục");
+									var channelPackge=$("input[name=channelPackge]").val();
 									var formData = new FormData();
-									formData.append("channelPackge", channelPackge); 
-									$("#validationWizard #preloaderInBox").css("display", "block"); 
+									formData.append("channelPackge", channelPackge);
+									$("#validationWizard #preloaderInBox").css("display", "block");
 									$.ajax({
 										url: "'.route("channel.add.step2",$channel["domainPrimary"]).'",
 										type: "POST",
@@ -982,18 +982,18 @@
 										data:formData,
 										headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 										success: function (result) {
-											console.log(result); 
+											console.log(result);
 											if(result.success==true){
-												move= true; 
-												$("#validationWizard #preloaderInBox").css("display", "none"); 
-												$("#validationWizard").bootstrapWizard("show",index); 
+												move= true;
+												$("#validationWizard #preloaderInBox").css("display", "none");
+												$("#validationWizard").bootstrapWizard("show",index);
 												$("html, body").animate({scrollTop: $("#validationWizard").offset().top}, "slow");
 											}else{
-												$("#validationWizard #preloaderInBox").css("display", "none");  
-												move=false; 
+												$("#validationWizard #preloaderInBox").css("display", "none");
+												move=false;
 												jQuery.gritter.add({
 													title: "Thông báo!",
-													text: result.message, 
+													text: result.message,
 													class_name: "growl-danger",
 													sticky: false,
 													time: ""
@@ -1002,14 +1002,14 @@
 										}
 									});
 								}else if(index==3){
-									$(".textNext").text("Tiếp tục"); 
-									
-									var channelName=$("input[name=channelName]").val(); 
-									var channelDescription=$("input[name=channelDescription]").val(); 
+									$(".textNext").text("Tiếp tục");
+
+									var channelName=$("input[name=channelName]").val();
+									var channelDescription=$("input[name=channelDescription]").val();
 									var formData = new FormData();
-									formData.append("channelName", channelName); 
-									formData.append("channelDescription", channelDescription); 
-									$("#validationWizard #preloaderInBox").css("display", "block"); 
+									formData.append("channelName", channelName);
+									formData.append("channelDescription", channelDescription);
+									$("#validationWizard #preloaderInBox").css("display", "block");
 									$.ajax({
 										url: "'.route("channel.add.step3",$channel["domainPrimary"]).'",
 										type: "POST",
@@ -1020,18 +1020,18 @@
 										data:formData,
 										headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 										success: function (result) {
-											console.log(result); 
+											console.log(result);
 											if(result.success==true){
-												move= true; 
-												$("#validationWizard #preloaderInBox").css("display", "none"); 
-												$("#validationWizard").bootstrapWizard("show",index); 
+												move= true;
+												$("#validationWizard #preloaderInBox").css("display", "none");
+												$("#validationWizard").bootstrapWizard("show",index);
 												$("html, body").animate({scrollTop: $("#validationWizard").offset().top}, "slow");
 											}else{
-												$("#validationWizard #preloaderInBox").css("display", "none");  
-												move=false; 
+												$("#validationWizard #preloaderInBox").css("display", "none");
+												move=false;
 												jQuery.gritter.add({
 													title: "Thông báo!",
-													text: result.message, 
+													text: result.message,
 													class_name: "growl-danger",
 													sticky: false,
 													time: ""
@@ -1040,21 +1040,21 @@
 										}
 									});
 								}else if(index==4){
-									$(".textNext").text("Tiếp tục"); 
-									var channelAddress=$("input[name=channelAddress]").val(); 
-									var channelFields=$("select[name=channelFields]").select2("val"); 
+									$(".textNext").text("Tiếp tục");
+									var channelAddress=$("input[name=channelAddress]").val();
+									var channelFields=$("select[name=channelFields]").select2("val");
 									var channelRegion=$("select[name=channelRegion]").select2("val");
-									var channelSubRegion=$("select[name=channelSubRegion]").select2("val"); 
+									var channelSubRegion=$("select[name=channelSubRegion]").select2("val");
 									var channelDistrict=$("select[name=channelDistrict]").select2("val");
 									var channelWard=$("select[name=channelWard]").select2("val");
 									var formData = new FormData();
-									formData.append("channelAddress", channelAddress); 
-									formData.append("channelFields", channelFields); 
-									formData.append("channelRegion", channelRegion); 
-									formData.append("channelSubRegion", channelSubRegion); 
-									formData.append("channelDistrict", channelDistrict); 
-									formData.append("channelWard", channelWard); 
-									$("#validationWizard #preloaderInBox").css("display", "block"); 
+									formData.append("channelAddress", channelAddress);
+									formData.append("channelFields", channelFields);
+									formData.append("channelRegion", channelRegion);
+									formData.append("channelSubRegion", channelSubRegion);
+									formData.append("channelDistrict", channelDistrict);
+									formData.append("channelWard", channelWard);
+									$("#validationWizard #preloaderInBox").css("display", "block");
 									$.ajax({
 										url: "'.route("channel.add.step4",$channel["domainPrimary"]).'",
 										type: "POST",
@@ -1065,18 +1065,18 @@
 										data:formData,
 										headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 										success: function (result) {
-											console.log(result); 
+											console.log(result);
 											if(result.success==true){
-												move= true; 
-												$("#validationWizard #preloaderInBox").css("display", "none"); 
-												$("#validationWizard").bootstrapWizard("show",index); 
-												$("html, body").animate({scrollTop: $("#validationWizard").offset().top}, "slow"); 
+												move= true;
+												$("#validationWizard #preloaderInBox").css("display", "none");
+												$("#validationWizard").bootstrapWizard("show",index);
+												$("html, body").animate({scrollTop: $("#validationWizard").offset().top}, "slow");
 											}else{
-												$("#validationWizard #preloaderInBox").css("display", "none");  
-												move=false; 
+												$("#validationWizard #preloaderInBox").css("display", "none");
+												move=false;
 												jQuery.gritter.add({
 													title: "Thông báo!",
-													text: result.message, 
+													text: result.message,
 													class_name: "growl-danger",
 													sticky: false,
 													time: ""
@@ -1085,17 +1085,17 @@
 										}
 									});
 								}else if(index==5){
-									$(".textNext").text("Tiếp tục"); 
-									var channelPhone=$("input[name=channelPhone]").val(); 
-									var channelEmail=$("input[name=channelEmail]").val(); 
-									var channelPassword=$("input[name=password]").val(); 
-									var channelRePassword=$("input[name=password_confirmation]").val(); 
+									$(".textNext").text("Tiếp tục");
+									var channelPhone=$("input[name=channelPhone]").val();
+									var channelEmail=$("input[name=channelEmail]").val();
+									var channelPassword=$("input[name=password]").val();
+									var channelRePassword=$("input[name=password_confirmation]").val();
 									var formData = new FormData();
-									formData.append("channelPhone", channelPhone); 
-									formData.append("channelEmail", channelEmail); 
-									formData.append("password", channelPassword); 
-									formData.append("password_confirmation", channelRePassword); 
-									$("#validationWizard #preloaderInBox").css("display", "block"); 
+									formData.append("channelPhone", channelPhone);
+									formData.append("channelEmail", channelEmail);
+									formData.append("password", channelPassword);
+									formData.append("password_confirmation", channelRePassword);
+									$("#validationWizard #preloaderInBox").css("display", "block");
 									$.ajax({
 										url: "'.route("channel.add.step5",$channel["domainPrimary"]).'",
 										type: "POST",
@@ -1106,25 +1106,25 @@
 										data:formData,
 										headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 										success: function (result) {
-											console.log(result); 
+											console.log(result);
 											if(result.success==true){
 												if(result.type=="free"){
-													$("#validationWizard #preloaderInBox").css("display", "none"); 
-													$("#validationWizard").bootstrapWizard("show",index); 
-													$("html, body").animate({scrollTop: $("#validationWizard").offset().top}, "slow"); 
+													$("#validationWizard #preloaderInBox").css("display", "none");
+													$("#validationWizard").bootstrapWizard("show",index);
+													$("html, body").animate({scrollTop: $("#validationWizard").offset().top}, "slow");
 													window.location.href = "'.route("channel.me",$channel["domainPrimary"]).'";
 												}else{
-													$("#validationWizard #preloaderInBox").css("display", "none"); 
-													$("#validationWizard").bootstrapWizard("show",index); 
-													$("html, body").animate({scrollTop: $("#validationWizard").offset().top}, "slow"); 
+													$("#validationWizard #preloaderInBox").css("display", "none");
+													$("#validationWizard").bootstrapWizard("show",index);
+													$("html, body").animate({scrollTop: $("#validationWizard").offset().top}, "slow");
 													window.location.href = "'.route("pay.cart",$channel["domainPrimary"]).'";
 												}
 											}else{
-												$("#validationWizard #preloaderInBox").css("display", "none");  
-												move=false; 
+												$("#validationWizard #preloaderInBox").css("display", "none");
+												move=false;
 												jQuery.gritter.add({
 													title: "Thông báo!",
-													text: result.message, 
+													text: result.message,
 													class_name: "growl-danger",
 													sticky: false,
 													time: ""
@@ -1151,7 +1151,7 @@
 										<!-- Wrapper for slides -->
 										<div class="swiper-wrapper">
 										<?
-											$i=0; 
+											$i=0;
 										?>
 										@foreach($postListNew as $post)
 										@if(!empty($post->getSlug->slug_value))
@@ -1187,7 +1187,7 @@
 										  </div><!-- item -->
 										 @endif
 										@endforeach
-										  
+
 										</div><!-- carousel-inner -->
 										<!-- Controls -->
 										<a class="left carousel-control carousel_control_left_2" href="#carousel-post-qc" data-slide="prev">
@@ -1221,39 +1221,39 @@
 								@endif
 							</div>
 							<?
-								$dependencies = array(); 
+								$dependencies = array();
 								$channel['theme']->asset()->writeScript('morePost', '
 									jQuery(document).ready(function(){
-									"use strict"; 
+									"use strict";
 									$("#loadPost .viewMore").click(function(){
-										var curentPage=parseInt($("#loadPost #curentPage-key").val()); 
-										var lastPage=parseInt($("#loadPost #lastPage-key").val()); 
-										var pageUrl=$("#loadPost #urlPage-key").val(); 
+										var curentPage=parseInt($("#loadPost #curentPage-key").val());
+										var lastPage=parseInt($("#loadPost #lastPage-key").val());
+										var pageUrl=$("#loadPost #urlPage-key").val();
 										var page_int=curentPage+1;
 										if(page_int<=lastPage){
-											$("#loadPost .viewMore").css("position","relative"); 
+											$("#loadPost .viewMore").css("position","relative");
 											$.ajax({
 												type: "GET",
 												url: pageUrl+"?page="+page_int,
 												dataType: "html",
 												contentType: "text/html",
 												beforeSend: function() {
-													$("#loadPost .viewMore").append("<div id=\"preloaderInBox\"><div id=\"status\"><i class=\"fa fa-spinner fa-spin\"></i></div></div>"); 
+													$("#loadPost .viewMore").append("<div id=\"preloaderInBox\"><div id=\"status\"><i class=\"fa fa-spinner fa-spin\"></i></div></div>");
 												},
 												success: function(data) {
-													$("#loadPost #curentPage-key").val(page_int); 
+													$("#loadPost #curentPage-key").val(page_int);
 													$(data).find(".PostlistItem").ready(function() {
 														var content_ajax = $(data).find(".PostlistItem").html();
-														$(".PostlistItem").append(content_ajax); 
-														$("#loadPost .viewMore #preloaderInBox").remove(); 
+														$(".PostlistItem").append(content_ajax);
+														$("#loadPost .viewMore #preloaderInBox").remove();
 													});
 												}
 											});
 										}else{
 											$("#loadPost .viewMore").addClass("hidden");
 										}
-										return false; 
-									}); 
+										return false;
+									});
 								});
 								', $dependencies);
 							?>
@@ -1276,14 +1276,14 @@
 													if(count($subChannel->domainAll)>0){
 														foreach($subChannel->domainAll as $domain){
 															if($domain->domain->domain_primary=='default'){
-																$domainPrimary=$domain->domain->domain; 
+																$domainPrimary=$domain->domain->domain;
 															}
 														}
 													}else{
-														$domainPrimary=$subChannel->domainJoinPrimary->domain->domain; 
+														$domainPrimary=$subChannel->domainJoinPrimary->domain->domain;
 													}
 												}else{
-													$domainPrimary=$subChannel->domainJoinPrimary->domain->domain; 
+													$domainPrimary=$subChannel->domainJoinPrimary->domain->domain;
 												}
 											?>
 											<li>
@@ -1293,7 +1293,7 @@
 												<h4 class="sender">
 												  <a href="{{route('channel.home',$domainPrimary)}}">{{$subChannel->channel_name}}</a>
 												</h4>
-												<p><small><a href="{{route('channel.home',$domainPrimary)}}"><i class="glyphicon glyphicon-link"></i> {{$domainPrimary}}</a></small></p> 
+												<p><small><a href="{{route('channel.home',$domainPrimary)}}"><i class="glyphicon glyphicon-link"></i> {{$domainPrimary}}</a></small></p>
 												<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{WebService::time_request($subChannel->channel_updated_at)}} - <span class="text-danger">{{$subChannel->channel_view}} lượt xem</span></small></p>
 											</li>
 										@endforeach
@@ -1314,39 +1314,39 @@
 									@endif
 								</div>
 								<?
-									$dependencies = array(); 
+									$dependencies = array();
 									$channel['theme']->asset()->writeScript('moreChannel', '
 										jQuery(document).ready(function(){
-										"use strict"; 
+										"use strict";
 										$("#loadChannel .viewMore").click(function(){
-											var curentPage=parseInt($("#loadChannel #curentPage-key").val()); 
-											var lastPage=parseInt($("#loadChannel #lastPage-key").val()); 
-											var pageUrl=$("#loadChannel #urlPage-key").val(); 
+											var curentPage=parseInt($("#loadChannel #curentPage-key").val());
+											var lastPage=parseInt($("#loadChannel #lastPage-key").val());
+											var pageUrl=$("#loadChannel #urlPage-key").val();
 											var page_int=curentPage+1;
 											if(page_int<=lastPage){
-												$("#loadChannel .viewMore").css("position","relative"); 
+												$("#loadChannel .viewMore").css("position","relative");
 												$.ajax({
 													type: "GET",
 													url: pageUrl+"?page="+page_int,
 													dataType: "html",
 													contentType: "text/html",
 													beforeSend: function() {
-														$("#loadChannel .viewMore").append("<div id=\"preloaderInBox\"><div id=\"status\"><i class=\"fa fa-spinner fa-spin\"></i></div></div>"); 
+														$("#loadChannel .viewMore").append("<div id=\"preloaderInBox\"><div id=\"status\"><i class=\"fa fa-spinner fa-spin\"></i></div></div>");
 													},
 													success: function(data) {
-														$("#loadChannel #curentPage-key").val(page_int); 
+														$("#loadChannel #curentPage-key").val(page_int);
 														$(data).find(".channelList").ready(function() {
 															var content_ajax = $(data).find(".channelList").html();
-															$(".channelList").append(content_ajax); 
-															$("#loadChannel .viewMore #preloaderInBox").remove(); 
+															$(".channelList").append(content_ajax);
+															$("#loadChannel .viewMore #preloaderInBox").remove();
 														});
 													}
 												});
 											}else{
 												$("#loadChannel .viewMore").addClass("hidden");
 											}
-											return false; 
-										}); 
+											return false;
+										});
 									});
 									', $dependencies);
 								?>
@@ -1356,32 +1356,32 @@
 				</div>
 			</div>
 		@else
-			
+
 			@if(count($channel['info']->joinCategory)>0 && $channel['totalPosts']>0)
 			<div class="group-section-content">
 				<div class="section-content">
 					@foreach($channel['info']->joinCategory as $joinCategory)
 						<?
 							if(!empty($joinCategory->category->options->attribute_value)){
-								$options=json_decode($joinCategory->category->options->attribute_value); 
+								$options=json_decode($joinCategory->category->options->attribute_value);
 							}else{
-								$options=null; 
+								$options=null;
 							}
 						?>
 						@if($options!=null && !empty($options->hiddenHomeCategory) && $options->hiddenHomeCategory=='checked')
 						@else
 							@if($joinCategory->category->parent_id==0)
-									<? 
-										$categoryId=[]; 
-										array_push($categoryId, $joinCategory->category->id); 
+									<?
+										$categoryId=[];
+										array_push($categoryId, $joinCategory->category->id);
 									?>
 									@if(count($joinCategory->category->children)>0)
-										@foreach($joinCategory->category->children as $catChild) 
+										@foreach($joinCategory->category->children as $catChild)
 											<?
-												array_push($categoryId, $catChild->id); 
+												array_push($categoryId, $catChild->id);
 												if(count($catChild->children)>0){
 													foreach($catChild->children as $subChild){
-														array_push($categoryId, $subChild->id); 
+														array_push($categoryId, $subChild->id);
 													}
 												}
 											?>
@@ -1396,24 +1396,24 @@
 											->groupBy('posts.id')
 											->orderBy('posts.posts_updated_at','desc')
 											->select('posts.*')
-											->get(); 
+											->get();
 									?>
 									@if(count($getPost)>0)
 										<div class="panel panel-primary panel-program">
 											<div class="panel-heading heading-program dropdown">
-												<h3 class="panel-title categoryParentTitle"><a href="{{route('channel.slug',array($channel['domain']->domain,$joinCategory->category->getSlug->slug_value))}}"><i class="glyphicon glyphicon-book"></i> {!!$joinCategory->category->category_name!!}</a></h3> 
+												<h3 class="panel-title categoryParentTitle"><a href="{{route('channel.slug',array($channel['domain']->domain,$joinCategory->category->getSlug->slug_value))}}"><i class="glyphicon glyphicon-book"></i> {!!$joinCategory->category->category_name!!}</a></h3>
 												@if(count($joinCategory->category->children)>0)
 													<small>
 														<a href="#" class="dropdown-toggle" data-toggle="dropdown">Xem thêm <span class="fa fa-angle-down"></span></a>
 														<ul class="dropdown-menu nopadding">
 															<a class="list-group-item" href="{{route('channel.slug',array($channel['domain']->domain,$joinCategory->category->getSlug->slug_value))}}"><i class="glyphicon glyphicon-list"></i> Xem tất cả</a>
-															@foreach($joinCategory->category->children as $catChild) 
-																@if(count($catChild->postsJoinParent)>0) 
+															@foreach($joinCategory->category->children as $catChild)
+																@if(count($catChild->postsJoinParent)>0)
 																	<a class="list-group-item" href="{{route('channel.slug',array($channel['domain']->domain,$catChild->getSlug->slug_value))}}"><i class="glyphicon glyphicon-folder-open"></i> {!!$catChild->category_name!!}</a>
-																@endif 
-																@if(count($catChild->children)>0) 
-																	@foreach($catChild->children as $subChild) 
-																		@if(count($subChild->postsJoinParent)>0) 
+																@endif
+																@if(count($catChild->children)>0)
+																	@foreach($catChild->children as $subChild)
+																		@if(count($subChild->postsJoinParent)>0)
 																			<a class="list-group-item" href="{{route('channel.slug',array($channel['domain']->domain,$subChild->getSlug->slug_value))}}"><i class="glyphicon glyphicon-folder-open"></i> {!!$subChild->category_name!!}</a>
 																		@endif
 																	@endforeach
@@ -1428,9 +1428,9 @@
 													@if(count($getPost)==1 && !empty($getPost[0]->getSlug->slug_value))
 														<?
 															if(!empty($getPost[0]->options->posts_attribute_value)){
-																$options=json_decode($getPost[0]->options->posts_attribute_value); 
+																$options=json_decode($getPost[0]->options->posts_attribute_value);
 															}else{
-																$options=null; 
+																$options=null;
 															}
 														?>
 														@if($options!=null && !empty($options->viewFullScreen) && $options->viewFullScreen=='checked')
@@ -1451,8 +1451,8 @@
 															@endif
 															</a>
 															<div class="attribute-2 mb5">
-																<small><span class="time-update"><i class="glyphicon glyphicon-time"></i> {!!WebService::time_request($getPost[0]->posts_updated_at)!!}</span> 
-																<span class="author"><i class="glyphicon glyphicon-user"></i> {!!$getPost[0]->author->user->name!!}</span></small> 
+																<small><span class="time-update"><i class="glyphicon glyphicon-time"></i> {!!WebService::time_request($getPost[0]->posts_updated_at)!!}</span>
+																<span class="author"><i class="glyphicon glyphicon-user"></i> {!!$getPost[0]->author->user->name!!}</span></small>
 															</div>
 															<div class="timeline-btns">
 																<div class="pull-left">
@@ -1471,11 +1471,11 @@
 															@if(!empty($getPost[0]->posts_description))
 																<div class="form-group">
 																	<?
-																		$postContent=html_entity_decode($getPost[0]->posts_description); 
+																		$postContent=html_entity_decode($getPost[0]->posts_description);
 																		$postContent=preg_replace('/(<p[^>]*>)(.*?)(<\/p>)/i', '$2<p>', $postContent);
-																		$postContent=WebService::limit_string(strip_tags($postContent,"<p><br>"), $limit = 500); 
+																		$postContent=WebService::limit_string(strip_tags($postContent,"<p><br>"), $limit = 500);
 																		$postContent=str_replace('????', '', $postContent);
-																		
+
 																	?>
 																	{!!$postContent!!} <a href="{{route('channel.slug',array($channel['domain']->domain,$getPost[0]->getSlug->slug_value))}}"><i class="glyphicon glyphicon-hand-right"></i> Xem thêm</a>
 																</div>
@@ -1519,11 +1519,11 @@
 </div><!-- mainpanel -->
 </section>
 <?
-	$dependencies = array(); 
+	$dependencies = array();
 	$channel['theme']->asset()->writeScript('loadLazy','
 		$(function() {
 			$(".lazy").lazy();
-		}); 
+		});
 		var swiper = new Swiper(".swiper-container", {
 			navigation: {
 				nextEl: ".carousel_control_right",

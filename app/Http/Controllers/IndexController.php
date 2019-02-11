@@ -40,52 +40,29 @@ class IndexController extends ConstructController
 		}
 	}
 	public function index(Request $request){
-		$parsedUrl=parse_url($request->url()); 
-		$this->_domainName = $this->_rulesDomain->resolve($parsedUrl['host']); 
 		if(!empty($this->_domainName->getSubDomain()) && $this->_domainName->getSubDomain()!='www'){
 			$this->_pieces = explode("-", $this->_domainName->getSubDomain()); 
 			$checkWWW = explode(".", $this->_domainName->getSubDomain()); 
-			if(!empty($this->_pieces[0]) && $this->_pieces[0]=='post'){
+			if($this->_siteType=='infoPost' && !empty($this->_pieces[0]) && $this->_pieces[0]=='post'){
 				//$this->_siteSuccess='infoPost'; 
-			}else if(!empty($this->_pieces[0]) && $this->_pieces[0]=='news'){
+			}else if($this->_siteType=='infoNews' && !empty($this->_pieces[0]) && $this->_pieces[0]=='news'){
 				return Redirect::to('https://'.config('app.url').'/news/'.$this->_pieces[1].'/old',301); 
-			}else if(!empty($this->_pieces[0]) && $this->_pieces[0]=='feed'){ 
+			}else if($this->_siteType=='infoFeed' && !empty($this->_pieces[0]) && $this->_pieces[0]=='feed'){
 				//$this->_siteSuccess='infoFeed'; 
-			}else if(!empty($this->_pieces[0]) && $this->_pieces[0]=='com'){
+			}else if($this->_siteType=='infoCompany' && !empty($this->_pieces[0]) && $this->_pieces[0]=='com'){
 				return Redirect::to('https://'.config('app.url').'/com/'.$this->_pieces[1].'/old',301); 
-			}else if(!empty($checkWWW[0]) && $checkWWW[0]=='www'){
+			}else if($this->_siteType=='redirectUrl' && !empty($checkWWW[0]) && $checkWWW[0]=='www'){
 				$url=str_replace('www.','',$request->url()); 
 				return Redirect::to($url,301); 
-			}else{
-				$fixDomain = substr($this->_domainName->getSubDomain(), 0, -2);
-				$this->_domain=$fixDomain; 
-				return $this->domainShow(); 
-			}
+			}else if($this->_siteType=='infoDomain'){
+                $fixDomain = substr($this->_domainName->getSubDomain(), 0, -2);
+                $this->_domain=$fixDomain;
+                return $this->domainShow();
+			}else if($this->_siteType=='infoChannel'){
+			    $data=array();
+                return Theme::view('home', $data);
+            }
 		}
-		$page = $request->has('page') ? $request->query('page') : 1; 
-		$getNewNote = Cache::store('memcached')->remember('newNoteUpdate'.$page,1, function()
-		{
-			return DB::connection('mongodb')->collection('note')
-			->select('type','title','description','created_at','updated_at')
-			->where('type','category')
-			->where('status','active')
-			//->orderBy('created_at','asc')
-			->simplePaginate(10); 
-		}); 
-		$notePostNew = Cache::store('memcached')->remember('note_post_home'.$page,1, function()
-		{
-			return DB::connection('mongodb')->collection('note')
-			->select('_id','type','title','content','media','view','created_at','updated_at')
-			->where('type','post')
-			->where('status','active')
-			->orderBy('updated_at','desc')
-			->simplePaginate(12); 
-		}); 
-		$data=array(
-			'getNote'=>$getNewNote, 
-			'postNew'=>$notePostNew
-		); 
-		return Theme::view('index', $data);
 	}
 	public function categoryList(Request $request){
 		$page = $request->has('page') ? $request->query('page') : 1; 

@@ -7,11 +7,10 @@
 		<meta name="robots" content="index,follow,noodp" />
 		@if(!empty(Theme::get('canonical')))<link rel="canonical" href="{!! Theme::get('canonical') !!}" />@endif 
 		@if(!empty(Theme::get('canonicalamp')))<link rel="amphtml" href="{!! Theme::get('canonicalamp') !!}">@endif 
-		<meta name="author" content="{{$channel['domain']->domain}}" />
-		<meta name="root" content="{{route('channel.home',$channel['domain']->domain)}}" />
+		<meta name="author" content="{{$channel['info']->domain}}" />
 		<link rel="icon" href="@if(!empty($channel['info']->channelAttributeLogo->media->media_name)){{config('app.link_media').$channel['info']->channelAttributeLogo->media->media_path.'xs/'.$channel['info']->channelAttributeLogo->media->media_name}}@else {!!Theme::asset()->url('img/favicon.png')!!}?v=3 @endif" />
 		<meta name="_token" content="{{ csrf_token() }}">
-		<meta name="copyright" content="Copyright &copy {{date('Y')}} {{$channel['domain']->domain}}.　All Right Reserved." />
+		<meta name="copyright" content="Copyright &copy {{date('Y')}} {{$channel['info']->domain}}.　All Right Reserved." />
 		<meta http-equiv="Content-Language" content="{{Lang::locale()}}" />
 		<meta name="robots" content="notranslate"/>
 		<meta name="distribution" content="Global" />

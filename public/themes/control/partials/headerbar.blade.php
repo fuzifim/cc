@@ -1,9 +1,9 @@
 <div class="headerbar">
 	<a class="menutoggle"><i class="fa fa-bars"></i></a>
 	<div itemscope itemtype="http://schema.org/WebSite"> 
-		<meta itemprop="url" content="{{route('channel.home',$channel['domainPrimary'])}}"/>
-		<form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" id="searchform" class="searchform" action="{{route('search.query',$channel['domainPrimary'])}}" method="get">
-			<meta itemprop="target" content="{{route('search.query',array($channel['domainPrimary']))}}?v={v}"/>
+		<meta itemprop="url" content="{{route('index',$channel['info']->domain)}}"/>
+		<form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" id="searchform" class="searchform" action="{{route('index',$channel['info']->domain)}}" method="get">
+			<meta itemprop="target" content="{{route('index',$channel['info']->domain)}}?v={v}"/>
 			<input itemprop="query-input"  type="text" class="form-control" name="v" id="searchAll" placeholder="Tìm kiếm..." />
 			<input type="hidden" name="t" id="searchType" value="">
 			<input type="hidden" name="i" id="searchId" value="">
@@ -12,7 +12,7 @@
 	<div class="header-right">
 		<ul class="headermenu">
 			<li>
-				<a class="btn btn-default dropdown-toggle" href="{{route('channel.home',$channel['domainPrimary'])}}"><i class="glyphicon glyphicon-home"></i> <span class="hidden-xs">@lang('main.home')</span></a>
+				<a class="btn btn-default dropdown-toggle" href="{{route('index',$channel['info']->domain)}}"><i class="glyphicon glyphicon-home"></i> <span class="hidden-xs">@lang('main.home')</span></a>
 			</li>
 			@if (Auth::check())
 			@if($channel['info']->channel_parent_id!=0)
@@ -33,15 +33,6 @@
 					</div>
 				</li>
 			@endif
-			@if($channel['security']!=true)
-				@if(\App\Model\Channel_role::where('parent_id','=',$channel['info']->id)->where('user_id','=',Auth::user()->id)->count()<=0)
-					<li>
-						<div class="btn-group">
-							<button type="button" id="btnJoinChannel" class="btn btn-default"><span class="text-success"><i class="glyphicon glyphicon-ok-sign"></i><span class="hidden-xs"> Gia nhập</span></span></button>
-						</div>
-					</li>
-				@endif
-			@endif
 			<li>
 				<a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 					<i class="glyphicon glyphicon-user"></i>
@@ -51,20 +42,20 @@
 				<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
 					@if($channel['security']==true)
 					<li class="dropdown-header">Quản lý dịch vụ</li>
-					<li><a href="{{route('channel.me',config('app.url'))}}" target="_blank"><i class="glyphicon glyphicon-list"></i> Website của tôi</a></li>
+					<li><a href="{{route('index',$channel['info']->domain)}}" target="_blank"><i class="glyphicon glyphicon-list"></i> Website của tôi</a></li>
 					<li class="divider"></li>
 					@endif
 					<li class="dropdown-header">Tài khoản</li>
-					<li><a href="{{route('channel.profile.info',$channel['domain']->domain)}}"><i class="glyphicon glyphicon-user"></i> Hồ sơ</a></li>
-					<li><a href="{{route('pay.history',$channel['domain']->domain)}}"><i class="glyphicon  glyphicon-credit-card"></i> Thanh toán</a></li>
+					<li><a href="{{route('index',$channel['info']->domain)}}"><i class="glyphicon glyphicon-user"></i> Hồ sơ</a></li>
+					<li><a href="{{route('index',$channel['info']->domain)}}"><i class="glyphicon  glyphicon-credit-card"></i> Thanh toán</a></li>
 					<li><a href="http://help.cungcap.net/" target="_blank"><i class="glyphicon glyphicon-question-sign"></i> Trợ giúp</a></li>
-					<li><a href="{{route('channel.logout',$channel['domain']->domain)}}"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a></li>
+					<li><a href="{{route('index',$channel['info']->domain)}}"><i class="glyphicon glyphicon-log-out"></i> Đăng xuất</a></li>
 				</ul>
 			</li>
 			@else
 			<li>
 				<div class="btn-group">
-					<a href="{{route('channel.login',$channel['domain']->domain)}}" class="btn btn-default dropdown-toggle"><span class="hidden-xs"><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</span><span class="visible-xs"><small><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</small></span></a>
+					<a href="{{route('index',$channel['info']->domain)}}" class="btn btn-default dropdown-toggle"><span class="hidden-xs"><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</span><span class="visible-xs"><small><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</small></span></a>
 				</div>
 			</li>
 			@endif
@@ -85,7 +76,7 @@
 @endif
 <?
 	$dependencies = array(); 
-	$channel['theme']->asset()->writeScript('searchAll','
+	Theme::asset()->writeScript('searchAll','
 		jQuery.ajax({
 			  url: "'.Theme::asset()->usePath()->url('js/jquery.autocomplete.min.js').'",
 			  dataType: "script",
@@ -93,7 +84,7 @@
 		}).done(function() {
 			if($("#searchAll").length>0){ 
 				$("#searchAll").autocomplete({ 
-					serviceUrl: "'.route("search.all",$channel["domain"]->domain).'",
+					serviceUrl: "'.route('index',$channel['info']->domain).'",
 					type:"GET",
 					paramName:"txt",
 					dataType:"json",
@@ -128,11 +119,11 @@
 		$regionDefaultIso=""; 
 	}
 	$dependencies = array(); 
-	$channel['theme']->asset()->writeScript('custom','
+	Theme::asset()->writeScript('custom','
 		$("#btnJoinChannel").click(function() {
 			var rootUrl=$("meta[name=root]").attr("content"); 
 			$.ajax({
-				url: "'.route("channel.profile.joinchannel",$channel["domain"]->domain).'",
+				url: "'.route('index',$channel['info']->domain).'",
 				headers: {"X-CSRF-TOKEN": $("meta[name=_token]").attr("content")},
 				type: "post",
 				cache: false,

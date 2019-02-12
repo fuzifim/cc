@@ -64,7 +64,8 @@ class ConstructController extends Controller
         }
 		view()->share(
 			'channel',array(
-                'info'=>$this->_channel
+                'info'=>$this->_channel,
+                'security'=>true
             )
 		);
 	}

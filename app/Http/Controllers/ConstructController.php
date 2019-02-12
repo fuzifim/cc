@@ -52,10 +52,12 @@ class ConstructController extends Controller
                 ->where('domain_encode',base64_encode($this->_domainName->getDomain()))
                 ->leftJoin('domain_join_channel','domain_join_channel.domain_id','=','domain.id')
                 ->leftJoin('channel','channel.id','=','domain_join_channel.channel_id')
-                ->select('domain.domain','channel.*')
+                ->leftJoin('channel_attribute','channel_attribute.channel_id','=','channel.id')
+                ->select('domain.domain','channel.*','channel_attribute.type as attribute_type','channel_attribute.value as attribute_value')
                 ->first();
             if(!empty($getInfoSite->channel_name)){
                 $this->_channel=$getInfoSite;
+                dd($this->_channel);
                 $this->_siteType='infoChannel';
                 Theme::uses('control')->layout('default');
             }else{

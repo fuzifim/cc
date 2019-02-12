@@ -15,11 +15,11 @@ class ChannelAttribute extends Migration
     {
         Schema::create('channel_attribute', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('channel_parent_id')->unsigned();
-            $table->foreign('channel_parent_id')->references('id')->on('channel')->onDelete('cascade');
-            $table->string('channel_attribute_type',255)->nullable();
-            $table->longText('channel_attribute_value')->nullable();
-            $table->enum('channel_attribute_status', ['pending', 'active','delete']);
+            $table->integer('channel_id')->unsigned();
+            $table->foreign('channel_id')->references('id')->on('channel')->onDelete('cascade');
+            $table->string('type',255)->nullable();
+            $table->longText('value')->nullable();
+            $table->enum('status', ['pending', 'active','delete']);
             $table->timestamps();
         });
     }

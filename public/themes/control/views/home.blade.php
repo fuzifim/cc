@@ -177,7 +177,7 @@ Theme::asset()->container('footer')->usePath()->add('swiper.min', 'library/swipe
 							toolbar: [
 								["font", ["bold", "italic", "underline", "clear"]],
 							],
-							codemirror: { // codemirror options
+							codemirror: {
 								theme: "monokai"
 							},
 							callbacks: {

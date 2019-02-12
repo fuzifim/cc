@@ -173,7 +173,7 @@
 			', $dependencies);
 			?>
 		@endif
-		<a class="logo_header" href="{{url('/')}}"><img class="" id="logoChannel" src="@if(!empty($channel['info']->channelAttributeLogo->media->media_name)){{config('app.link_media').$channel['info']->channelAttributeLogo->media->media_path.'small/'.$channel['info']->channelAttributeLogo->media->media_name}}@else {{asset('assets/img/logo-default.jpg')}} @endif" alt="{!!$channel['info']->channel_name!!}"></a>
+		<a class="logo_header" href="{{url('/')}}"><img class="" id="logoChannel" src="@if(!empty($channel['info']->channelAttributeLogo->media->media_name)){{config('app.link_media').$channel['info']->channelAttributeLogo->media->media_path.'small/'.$channel['info']->channelAttributeLogo->media->media_name}}@else {{Theme::asset()->url('img/logo-default.jpg')}} @endif" alt="{!!$channel['info']->channel_name!!}"></a>
 	</div><!-- logopanel -->
 
 	<div class="leftpanelinner">

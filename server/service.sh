@@ -16,3 +16,12 @@ sudo yum install -y mongodb-org
 sudo service mongod start
 sudo csf -a 206.189.147.163
 sudo csf -a 206.189.159.38
+DATABASE="cungcap"
+USERDATA="cungcap_user"
+PASSUSER="cungcap_pass"
+if ! sudo mysql -u root -e "use ${DATABASE}"; then
+    sudo mysql -u root -e "CREATE DATABASE ${DATABASE} /*\!40100 DEFAULT CHARACTER SET utf8 */;"
+    sudo mysql -u root -e "CREATE USER ${USERDATA}@localhost IDENTIFIED BY '${PASSUSER}';"
+    sudo mysql -u root -e "GRANT ALL PRIVILEGES ON ${DATABASE}.* TO '${USERDATA}'@'localhost';"
+    sudo mysql -u root -e "FLUSH PRIVILEGES;"
+fi

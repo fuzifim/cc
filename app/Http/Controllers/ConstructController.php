@@ -57,7 +57,6 @@ class ConstructController extends Controller
                 ->first();
             if(!empty($getInfoSite->channel_name)){
                 $this->_channel=$getInfoSite;
-                dd($this->_channel);
                 $this->_siteType='infoChannel';
                 Theme::uses('control')->layout('default');
             }else{

@@ -1,33 +1,33 @@
 <?
-	if(!empty($channel['seo']->value)){
-		$seoJson=json_decode($channel['seo']->value);
-		if(!empty($seoJson->metaTitle)){
-			$metaTitle=$seoJson->metaTitle;
-		}else{
-			$metaTitle=$channel['info']->channel_name;
-		}
-		if(!empty($seoJson->metaDescription)){
-			$metaDescription=$seoJson->metaDescription;
-		}else{
-			$metaDescription=$channel['info']->channel_description;
-		}
+if(!empty($channel['seo']->value)){
+	$seoJson=json_decode($channel['seo']->value);
+	if(!empty($seoJson->metaTitle)){
+		$metaTitle=$seoJson->metaTitle;
 	}else{
 		$metaTitle=$channel['info']->channel_name;
+	}
+	if(!empty($seoJson->metaDescription)){
+		$metaDescription=$seoJson->metaDescription;
+	}else{
 		$metaDescription=$channel['info']->channel_description;
 	}
-	Theme::setTitle(html_entity_decode($metaTitle));
-	if(!empty($channel['info']->channel_keywords)){
-		Theme::setKeywords($channel['info']->channel_keywords);
-	}else{
-		Theme::setKeywords(html_entity_decode($metaTitle));
-	}
-	Theme::setDescription(mb_substr(strip_tags(html_entity_decode($metaDescription),""), 0, 255));
-	Theme::setCanonical(route("index",$channel["info"]->domain));
-	/*if(count($channel['info']->channelAttributeBanner)>0 && !empty($channel['info']->channelAttributeBanner[0]->media->media_name)){
-		Theme::setImage(config('app.link_media').$channel['info']->channelAttributeBanner[0]->media->media_path.$channel['info']->channelAttributeBanner[0]->media->media_name);
-	}else{
-		Theme::setImage('http://'.$channel["domainPrimary"].Theme::asset()->url('img/cungcap.jpg'));
-	}*/
+}else{
+	$metaTitle=$channel['info']->channel_name;
+	$metaDescription=$channel['info']->channel_description;
+}
+Theme::setTitle(html_entity_decode($metaTitle));
+if(!empty($channel['info']->channel_keywords)){
+	Theme::setKeywords($channel['info']->channel_keywords);
+}else{
+	Theme::setKeywords(html_entity_decode($metaTitle));
+}
+Theme::setDescription(mb_substr(strip_tags(html_entity_decode($metaDescription),""), 0, 255));
+Theme::setCanonical(route("index",$channel["info"]->domain));
+/*if(count($channel['info']->channelAttributeBanner)>0 && !empty($channel['info']->channelAttributeBanner[0]->media->media_name)){
+	Theme::setImage(config('app.link_media').$channel['info']->channelAttributeBanner[0]->media->media_path.$channel['info']->channelAttributeBanner[0]->media->media_name);
+}else{
+	Theme::setImage('http://'.$channel["domainPrimary"].Theme::asset()->url('img/cungcap.jpg'));
+}*/
 Theme::asset()->container('footer')->usePath()->add('jquery', 'js/jquery-1.11.1.min.js');
 Theme::asset()->container('footer')->usePath()->add('jquery-migrate', 'js/jquery-migrate-1.2.1.min.js');
 Theme::asset()->container('footer')->usePath()->add('bootstrap', 'js/bootstrap.min.js');

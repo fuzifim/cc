@@ -10,6 +10,7 @@ use App\Model\Note;
 use Cache; 
 use Redirect;
 use DB;
+use App\Model\Channel;
 class ConstructController extends Controller
 {
 	public $_parame; 
@@ -18,6 +19,9 @@ class ConstructController extends Controller
     public $_pieces;
 	public $_siteType;
 	public $_channel;
+    public $_channel_attribute;
+    public $_channel_seo;
+    public $_channel_color;
 	public $_domain;
 	public function __construct(){
         Theme::uses('main');
@@ -46,19 +50,30 @@ class ConstructController extends Controller
             }else{
                 $this->_siteType='infoSite';
             }
+        }else{
+            $this->_siteType='infoSite';
         }
         if($this->_siteType=='infoSite'){
-            $getInfoSite=DB::table('domain')
-                ->where('domain_encode',base64_encode($this->_domainName->getDomain()))
-                ->leftJoin('domain_join_channel','domain_join_channel.domain_id','=','domain.id')
-                ->leftJoin('channel','channel.id','=','domain_join_channel.channel_id')
-                ->leftJoin('channel_attribute','channel_attribute.channel_id','=','channel.id')
-                ->select('domain.domain','channel.*','channel_attribute.type as attribute_type','channel_attribute.value as attribute_value')
-                ->first();
-            if(!empty($getInfoSite->channel_name)){
-                $this->_channel=$getInfoSite;
+            $this->_channel = Cache::store('memcached')->remember('_channel', 1, function()
+            {
+                return DB::table('domain')
+                    ->where('domain_encode',base64_encode($this->_domainName->getDomain()))
+                    ->leftJoin('domain_join_channel','domain_join_channel.domain_id','=','domain.id')
+                    ->leftJoin('channel','channel.id','=','domain_join_channel.channel_id')
+                    ->select('domain.domain','channel.*')
+                    ->first();
+            });
+            if(!empty($this->_channel->channel_name)){
                 $this->_siteType='infoChannel';
-                Theme::uses('control')->layout('default');
+                $this->_channel_attribute = Cache::store('memcached')->remember('_channel_attribute', 1, function()
+                {
+                    return DB::table('channel_attribute')
+                        ->where('channel_id',$this->_channel->id)
+                        ->get();
+                });
+                if($this->_channel->channel_parent_id!=0){
+                    Theme::uses('control')->layout('default');
+                }
             }else{
                 $this->_siteType='infoDomain';
             }
@@ -66,7 +81,8 @@ class ConstructController extends Controller
 		view()->share(
 			'channel',array(
                 'info'=>$this->_channel,
-                'security'=>true
+                'security'=>true,
+                'color'=>$this->_channel_color
             )
 		);
 	}

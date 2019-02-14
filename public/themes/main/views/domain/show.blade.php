@@ -122,17 +122,8 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 					<a class="btn btn-danger siteLink w-100" href="javascript:void(0);" data-url='{{json_encode("https://plus.google.com/share?url=http://".$note->domain.".d.".config('app.url'))}}'><span class="fa fa-twitter"></span> Share Google+</a>
 					</div>
 				</div>
-				@if($ads=='true')
-					<div class="form-group">
-						<ins class="adsbygoogle"
-							 style="display:block"
-							 data-ad-client="ca-pub-6739685874678212"
-							 data-ad-slot="7536384219"
-							 data-ad-format="auto"></ins>
-						<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-						</script>
-					</div>
+				@if($ads=='true' && config('app.env')!=='local')
+					@section('adsense_1')
 				@endif
 				<div class="form-group">
 					<a class="btn btn-primary btn-block siteLink" id="linkContinue" data-url='{{json_encode('http://'.$note->domain)}}' href="{{route('go.to',array(config('app.url'),$note->id,str_slug($note->domain, '-')))}}" rel="nofollow" target="blank">Visit this site click here
@@ -209,7 +200,7 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 						<div class="card tab-content mb10">
 							@if(!empty($domainContent->basic_info))
 							<div class="tab-pane active" id="basicInfo">
-								@if($ads=='true')
+								@if($ads=='true' && config('app.env')!=='local')
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
@@ -264,17 +255,8 @@ if(!empty($note->attribute['ads']) && $note->attribute['ads']=='disable'){
 				@endif
 			</div>
 			<div class="col-md-4">
-				@if($ads=='true')
-					<div class="card form-group">
-						<ins class="adsbygoogle"
-							 style="display:block"
-							 data-ad-client="ca-pub-6739685874678212"
-							 data-ad-slot="7536384219"
-							 data-ad-format="auto"></ins>
-						<script>
-						(adsbygoogle = window.adsbygoogle || []).push({});
-						</script>
-					</div>
+				@if(config('app.env')!=='local')
+					@section('adsense_1')
 				@endif
 				@if(count($getNoteRelate)>0)
 				<div class="siteList form-group">

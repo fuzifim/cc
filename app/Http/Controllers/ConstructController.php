@@ -90,6 +90,7 @@ class ConstructController extends Controller
 			'channel',array(
                 'info'=>$this->_channel,
                 'security'=>true,
+                'seo'=>$this->_channel_seo,
                 'color'=>$this->_channel_color
             )
 		);

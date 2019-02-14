@@ -1,6 +1,6 @@
 <?
-	if(!empty($channel['info']->getSeo->channel_attribute_value)){
-		$seoJson=json_decode($channel['info']->getSeo->channel_attribute_value);
+	if(!empty($channel['seo']->value)){
+		$seoJson=json_decode($channel['seo']->value);
 		if(!empty($seoJson->metaTitle)){
 			$metaTitle=$seoJson->metaTitle;
 		}else{
@@ -21,8 +21,8 @@
 	}else{
 		Theme::setKeywords(html_entity_decode($metaTitle));
 	}
-	Theme::setDescription(str_limit(strip_tags(html_entity_decode($metaDescription),""), $limit = 250, $end='...'));
-	//$channel['theme']->setCanonical(route("channel.home",$channel["domainPrimary"]));
+	Theme::setDescription(mb_substr(strip_tags(html_entity_decode($metaDescription),""), 0, 255));
+	Theme::setCanonical(route("index",$channel["info"]->domain));
 	/*if(count($channel['info']->channelAttributeBanner)>0 && !empty($channel['info']->channelAttributeBanner[0]->media->media_name)){
 		Theme::setImage(config('app.link_media').$channel['info']->channelAttributeBanner[0]->media->media_path.$channel['info']->channelAttributeBanner[0]->media->media_name);
 	}else{

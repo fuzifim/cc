@@ -71,6 +71,14 @@ class ConstructController extends Controller
                         ->where('channel_id',$this->_channel->id)
                         ->get();
                 });
+                foreach ($this->_channel_attribute as $attribute){
+                    if($attribute->type==Channel::ATTRIBUTE_SEO){
+                        $this->_channel_seo=$attribute;
+                    }
+                    if($attribute->type==Channel::ATTRIBUTE_COLOR){
+                        $this->_channel_color=json_decode($attribute->value);
+                    }
+                }
                 if($this->_channel->channel_parent_id!=0){
                     Theme::uses('control')->layout('default');
                 }

@@ -14,7 +14,6 @@
 	</div>
 	<div class="siteFooter">
 		<div class="container">
-			@if($channel['info']->channel_parent_id==0)
 			<div class="row">
 				<div class="col-md-4">
 					<small><strong>CÔNG TY CỔ PHẦN CUNG CẤP</strong> - MST: 0314609089</small><br>
@@ -39,42 +38,6 @@
 					</ul>
 				</div>
 			</div>
-			@else
-				<div class="row">
-					<div class="addressInfo">
-						@if(isset($channel['info']->companyJoin->company))
-							<h3 class="subtitle mb5"><a href=""><strong>{!!$channel['info']->companyJoin->company->company_name!!}</strong></a></h3>
-						@else
-							<h3 class="subtitle mb5"><a href=""><strong>{!!$channel['info']->channel_name!!}</strong></a></h3>
-						@endif
-						@if(count($channel['info']->joinAddress)>0)
-							@foreach($channel['info']->joinAddress as $joinAddress)
-								<div class="mb5 addressItemGroup">
-									<div class="addressItem">
-										<i class="glyphicon glyphicon-map-marker"></i> {!!$joinAddress->address->address!!}
-										@if(!empty($joinAddress->address->joinWard->ward->id)) - {!!$joinAddress->address->joinWard->ward->ward_name!!}@endif
-										@if(!empty($joinAddress->address->joinDistrict->district->id)) - {!!$joinAddress->address->joinDistrict->district->district_name!!}@endif
-										@if(!empty($joinAddress->address->joinSubRegion->subregion->id)) - {!!$joinAddress->address->joinSubRegion->subregion->subregions_name!!}@endif
-										@if(!empty($joinAddress->address->joinRegion->region->id)) - <i class="flag flag-{{mb_strtolower($joinAddress->address->joinRegion->region->iso)}}"></i> {!!$joinAddress->address->joinRegion->region->country!!}@endif
-									</div>
-								</div>
-							@endforeach
-						@else
-							<div class="mb5 addressItemGroup">
-								<div class="addressItem">
-									<small><i class="glyphicon glyphicon-map-marker"></i> <span style="font-style:italic; ">Chưa cập nhật địa chỉ...</small>
-								</div>
-							</div>
-						@endif
-						<div class="mb5 emailPhoneItemGroup">
-						</div>
-						<div class="mb5">
-							<i class="glyphicon glyphicon-globe"></i> Website: <a href=""></a>
-						</div>
-						@if($channel['security']==true)<div class="mb5"><a href="" class="text-danger"><i class="fa fa-pencil"></i> Chỉnh sửa</a></div>@endif
-					</div>
-				</div>
-			@endif
 		</div>
 	</div>
 	<a href="#" id="back-to-top" title="Back to top"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -101,7 +64,6 @@
 			</div>
 		</div>
 	</div>
-	@if(!empty($channel['color']->footerScript)){!!$channel['color']->footerScript!!}@endif
 	<?php
 	Theme::asset()->container('footer')->add('custom', 'js/custom.min.js?v=9');
 	?>

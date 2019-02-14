@@ -54,7 +54,7 @@ class ConstructController extends Controller
                 ->leftJoin('channel','channel.id','=','domain_join_channel.channel_id')
                 ->leftJoin('channel_attribute','channel_attribute.channel_id','=','channel.id')
                 ->select('domain.domain','channel.*','channel_attribute.type as attribute_type','channel_attribute.value as attribute_value')
-                ->get();
+                ->first();
             if(!empty($getInfoSite->channel_name)){
                 $this->_channel=$getInfoSite;
                 $this->_siteType='infoChannel';

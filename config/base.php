@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'user_name'=>env('USER_NAME','Fuzifim'),
+    'user_email'=>env('USER_EMAIL','fuzifim@gmail.com'),
+    'user_phone'=>env('USER_PHONE','+84963913349'),
+    'user_password'=>env('USER_PASSWORD','$2y$10$Z1pzREkS1TuRS2.SOFXQau7i6tyot2U9KHwxic99APmbDn75rLfau'),
+    'channel_name_master'=> env('CHANNEL_NAME_MASTER', 'Cung Cấp'),
+    'channel_description_master'=> env('CHANNEL_DESCRIPTION_MASTER', 'Channel description'),
+    'channel_status_master'=> env('CHANNEL_STATUS_MASTER', 'active'),
+    'channel_user_id_master'=>env('CHANNEL_USER_ID_MASTER', 1),
+    'channel_parent_master'=>env('CHANNEL_PARENT_MASTER', 0),
+    'channel_date_end_master'=> env('CHANNEL_DATE_END_MASTER', \Carbon\Carbon::now()->addDays(30)),
+    'domain_master'=> env('CONFIG_DOMAIN','cungcap.local'),
+    'domain_encode_master'=>env('DOMAIN_ENCODE_MASTER','Y3VuZ2NhcC5sb2NhbA=='),
+    'domain_primary_master'=>env('DOMAIN_PRIMARY_MASTER','default'),
+    'domain_id_master'=>env('DOMAIN_ID_MASTER',1),
+    'channel_id_master'=>env('CHANNEL_ID_MASTER',1),
+    //USER
+    'channel_name_user'=> env('CHANNEL_NAME_MASTER', 'Channel Test'),
+    'channel_description_user'=> env('CHANNEL_DESCRIPTION_MASTER', 'Channel Description Test'),
+    'channel_status_user'=> env('CHANNEL_STATUS_MASTER', 'active'),
+    'channel_user_id_user'=>env('CHANNEL_USER_ID_MASTER', 1),
+    'channel_parent_user'=>env('CHANNEL_PARENT_MASTER', 1),
+    'channel_date_end_user'=> env('CHANNEL_DATE_END_MASTER', \Carbon\Carbon::now()->addDays(30)),
+    'domain_user'=> env('CONFIG_DOMAIN','test.cungcap.local'),
+    'domain_encode_user'=>env('DOMAIN_ENCODE_MASTER','dGVzdC5jdW5nY2FwLmxvY2Fs'),
+    'domain_primary_user'=>env('DOMAIN_PRIMARY_MASTER','default'),
+    'domain_id_user'=>env('DOMAIN_ID_MASTER',2),
+    'channel_id_user'=>env('CHANNEL_ID_MASTER',2),
+];

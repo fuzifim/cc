@@ -56,7 +56,7 @@ class ConstructController extends Controller
                 ->select('domain.domain','channel.*','channel_attribute.type as attribute_type','channel_attribute.value as attribute_value')
                 ->get();
             if(!empty($getInfoSite->channel_name)){
-                $this->_channel=$getInfoSite; 
+                $this->_channel=$getInfoSite;
                 $this->_siteType='infoChannel';
                 Theme::uses('control')->layout('default');
             }else{

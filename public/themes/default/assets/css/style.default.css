@@ -542,7 +542,7 @@ div.error label.error:before{font-family:'Glyphicons Halflings';content:'\e101';
 .timeline-post .form-control:focus{-moz-box-shdow:none;-webkit-box-shadow:none;box-shadow:none;}
 .timeline-post .panel-footer{padding:10px;background:#f7f7f7;border-radius: 0px;}
 .timeline-btns{padding:0px;}
-.timeline-btns a{display:inline-block;font-size:14px;height:20px;text-align:center;margin-right:10px;text-decoration:none;}
+.timeline-btns a{display:inline-block;font-size:14px;height:20px;text-align:center;margin-right:20px;text-decoration:none;}
 .timeline-btns a:hover{color:#666;}
 .panel-timeline .panel-heading{padding:10px 10px 6px 10px;border-bottom:0;}
 .panel-timeline .panel-body{padding:0 10px;}
@@ -939,7 +939,7 @@ section{margin:auto;margin-bottom:5px;max-width:1170px;position:relative;backgro
 #back-to-top:hover {background: #e9ebec;}
 #back-to-top.show { opacity: 1;}
 .postDescription{word-wrap:break-word;font-size:16px;}
-.groupChannelName #preloaderInBox{display:none;}
+#preloaderInBox{display:none; position: relative;}
 .listPost{min-height:110px;}
 .postMediaXs{max-width:90px;}
 .fileMedia li{width:120px;height:90px;float:left;display:block;margin:0px 5px 5px 0px;position:relative;}

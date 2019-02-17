@@ -40,7 +40,7 @@ Theme::asset()->container('footer')->usePath()->add('swiper.min', 'library/swipe
 {!!Theme::partial('leftpanel', array('title' => 'Header'))!!}
 <div class="mainpanel">
 {!!Theme::partial('headerbar', array('title' => 'Header'))!!}
-	<div class="pageheader">
+	<div class="pageheader hidden-xs">
 		<div class="groupChannelName">
 			<div id="preloaderInBox">
 				<div id="status"><i class="fa fa-spinner fa-spin"></i></div>

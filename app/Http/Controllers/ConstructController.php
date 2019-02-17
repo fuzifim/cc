@@ -100,6 +100,7 @@ class ConstructController extends Controller
 		view()->share(
 			'channel',array(
                 'info'=>$this->_channel,
+                'domain'=>$this->_channel->domain,
                 'security'=>true,
                 'seo'=>$this->_channel_seo,
                 'color'=>$this->_channel_color,

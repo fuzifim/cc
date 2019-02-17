@@ -9,7 +9,7 @@
 			</div>
 			<?
 			$dependencies = array();
-			Theme::asset()->writeScript('changeLogo', '
+			Theme::asset()->container('footer')->writeScript('changeLogo', '
 				jQuery(document).ready(function(){
 				"use strict";
 				jQuery(".logopanel").hover(function(){

@@ -56,7 +56,7 @@ return [
         '*.m4v',
         '*.torrent', 
 		'post/add',
-		//'d/*',
+		'/*',
     ],
 
 ];

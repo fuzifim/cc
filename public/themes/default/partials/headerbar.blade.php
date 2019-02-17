@@ -55,7 +55,7 @@
 			@else
 			<li>
 				<div class="btn-group">
-					<a href="{{route('index',$channel['info']->domain)}}" class="btn btn-default dropdown-toggle"><span class="hidden-xs"><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</span><span class="visible-xs"><small><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</small></span></a>
+					<a href="{{route('login',$channel['domain'])}}" class="btn btn-default dropdown-toggle"><span class="hidden-xs"><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</span><span class="visible-xs"><small><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</small></span></a>
 				</div>
 			</li>
 			@endif
@@ -76,7 +76,7 @@
 @endif
 <?
 	$dependencies = array(); 
-	Theme::asset()->writeScript('searchAll','
+	Theme::asset()->container('footer')->writeScript('searchAll','
 		jQuery.ajax({
 			  url: "'.Theme::asset()->usePath()->url('js/jquery.autocomplete.min.js').'",
 			  dataType: "script",
@@ -119,7 +119,7 @@
 		$regionDefaultIso=""; 
 	}
 	$dependencies = array(); 
-	Theme::asset()->writeScript('custom','
+	Theme::asset()->container('footer')->writeScript('custom','
 		$("#btnJoinChannel").click(function() {
 			var rootUrl=$("meta[name=root]").attr("content"); 
 			$.ajax({

@@ -21,7 +21,7 @@ function isEditable(node) {
 /**
  * @method isControlSizing
  *
- * returns whether node is `note-control-sizing` or not.
+ * returns whether node is `note-default-sizing` or not.
  *
  * @param {Node} node
  * @return {Boolean}

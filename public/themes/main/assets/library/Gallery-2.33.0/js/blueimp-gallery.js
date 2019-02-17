@@ -78,15 +78,15 @@
       slideErrorClass: 'slide-error',
       // The class for the content element loaded into each slide:
       slideContentClass: 'slide-content',
-      // The class for the "toggle" control:
+      // The class for the "toggle" default:
       toggleClass: 'toggle',
-      // The class for the "prev" control:
+      // The class for the "prev" default:
       prevClass: 'prev',
-      // The class for the "next" control:
+      // The class for the "next" default:
       nextClass: 'next',
-      // The class for the "close" control:
+      // The class for the "close" default:
       closeClass: 'close',
-      // The class for the "play-pause" toggle control:
+      // The class for the "play-pause" toggle default:
       playPauseClass: 'play-pause',
       // The list object property (or data attribute) with the object type:
       typeProperty: 'type',
@@ -868,23 +868,23 @@
         return $(target).hasClass(className) || $(parent).hasClass(className)
       }
       if (isTarget(options.toggleClass)) {
-        // Click on "toggle" control
+        // Click on "toggle" default
         this.preventDefault(event)
         this.toggleControls()
       } else if (isTarget(options.prevClass)) {
-        // Click on "prev" control
+        // Click on "prev" default
         this.preventDefault(event)
         this.prev()
       } else if (isTarget(options.nextClass)) {
-        // Click on "next" control
+        // Click on "next" default
         this.preventDefault(event)
         this.next()
       } else if (isTarget(options.closeClass)) {
-        // Click on "close" control
+        // Click on "close" default
         this.preventDefault(event)
         this.close()
       } else if (isTarget(options.playPauseClass)) {
-        // Click on "play-pause" control
+        // Click on "play-pause" default
         this.preventDefault(event)
         this.toggleSlideshow()
       } else if (parent === this.slidesContainer[0]) {

@@ -262,7 +262,7 @@
         "stylus", "swift", "textile", "twig", "typescript", "yaml"
       ];
 
-      var select = '<select class=\"form-control\" id=\"code-language\"><option>' + languages.join('</option><option>') + '</option></select>';
+      var select = '<select class=\"form-default\" id=\"code-language\"><option>' + languages.join('</option><option>') + '</option></select>';
 
       var dialogOption = {
         title: lang.dialogPrettyfi.title,
@@ -272,7 +272,7 @@
         '</div>' +
         '<div class=\"form-group\">' +
         '<label>' + lang.dialogPrettyfi.codeLabel + '</label>' +
-        '<textarea class=\"form-control\" id=\"code\" rows=\"7\"></textarea>' +
+        '<textarea class=\"form-default\" id=\"code\" rows=\"7\"></textarea>' +
         '</div>',
         footer: '<button href=\"#\" id=\"btn-add\" class=\"btn btn-primary\">' + lang.dialogPrettyfi.button + '</button>',
         closeOnEscape: true

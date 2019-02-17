@@ -2,93 +2,84 @@
 
 return array(
 
-	/*
-	|--------------------------------------------------------------------------
-	| Inherit from another theme
-	|--------------------------------------------------------------------------
-	|
-	| Set up inherit from another if the file is not exists, this 
-	| is work with "layouts", "partials", "views" and "widgets"
-	|
-	| [Notice] assets cannot inherit.
-	|
-	*/
+    /*
+    |--------------------------------------------------------------------------
+    | Inherit from another theme
+    |--------------------------------------------------------------------------
+    |
+    | Set up inherit from another if the file is not exists,
+    | this is work with "layouts", "partials", "views" and "widgets"
+    |
+    | [Notice] assets cannot inherit.
+    |
+    */
 
-	'inherit' => null, //default
+    'inherit' => null, //default
 
-	/*
-	|--------------------------------------------------------------------------
-	| Listener from events
-	|--------------------------------------------------------------------------
-	|
-	| You can hook a theme when event fired on activities this is cool 
-	| feature to set up a title, meta, default styles and scripts.
-	|
-	| [Notice] these event can be override by package config.
-	|
-	*/
+    /*
+    |--------------------------------------------------------------------------
+    | Listener from events
+    |--------------------------------------------------------------------------
+    |
+    | You can hook a theme when event fired on activities
+    | this is cool feature to set up a title, meta, default styles and scripts.
+    |
+    | [Notice] these event can be override by package config.
+    |
+    */
 
-	'events' => array(
+    'events' => array(
 
-		'before' => function($theme)
-		{
-			$theme->setTitle('Title example');
-			$theme->setAuthor('Jonh Doe');
-		},
+        // Before event inherit from package config and the theme that call before,
+        // you can use this event to set meta, breadcrumb template or anything
+        // you want inheriting.
+        'before' => function($theme)
+        {
+            // You can remove this line anytime.
+            $theme->setTitle('Copyright ©  2008 - Fuzifim');
 
-		'asset' => function($asset)
-		{
-			$asset->themePath()->add([
-										['bootstrap', 'css/bootstrap.min.css'], 
-										['style-2', 'css/font-awesome.min.css'],
-										['style-3', 'css/smartadmin-production-plugins.min.css'],
-										['style-4', 'css/smartadmin-production.min.css'],
-										['style-5', 'css/smartadmin-skins.min.css'],
-										['style-6', 'css/smartadmin-rtl.min.css'],
-										['style-7', 'css/demo.min.css'],
-										['style-8', 'css/style.css'],
-										['script', 'js/script.js']
-									 ]);
+            // Breadcrumb template.
+            // $theme->breadcrumb()->setTemplate('
+            //     <ul class="breadcrumb">
+            //     @foreach ($crumbs as $i => $crumb)
+            //         @if ($i != (count($crumbs) - 1))
+            //         <li><a href="{{ $crumb["url"] }}">{!! $crumb["label"] !!}</a><span class="divider">/</span></li>
+            //         @else
+            //         <li class="active">{!! $crumb["label"] !!}</li>
+            //         @endif
+            //     @endforeach
+            //     </ul>
+            // ');
+        },
 
-			// You may use elixir to concat styles and scripts.
-			/*
-			$asset->themePath()->add([
-										['styles', 'dist/css/styles.css'],
-										['scripts', 'dist/js/scripts.js']
-									 ]);
-			*/
+        // Listen on event before render a theme,
+        // this event should call to assign some assets,
+        // breadcrumb template.
+        'beforeRenderTheme' => function($theme)
+        {
+            // You may use this event to set up your assets.
+            // $theme->asset()->usePath()->add('core', 'core.js');
+            // $theme->asset()->add('jquery', 'vendor/jquery/jquery.min.js');
+            // $theme->asset()->add('jquery-ui', 'vendor/jqueryui/jquery-ui.min.js', array('jquery'));
 
-			// Or you may use this event to set up your assets.
-			/*
-			$asset->themePath()->add('core', 'core.js');			
-			$asset->add([
-							['jquery', 'vendor/jquery/jquery.min.js'],
-							['jquery-ui', 'vendor/jqueryui/jquery-ui.min.js', ['jquery']]
-						]);
-			*/
-		},
+            // Partial composer.
+            // $theme->partialComposer('header', function($view)
+            // {
+            //     $view->with('auth', Auth::user());
+            // });
+        },
 
+        // Listen on event before render a layout,
+        // this should call to assign style, script for a layout.
+        'beforeRenderLayout' => array(
 
-		'beforeRenderTheme' => function($theme)
-		{
-			// To render partial composer
-			/*
-	        $theme->partialComposer('header', function($view){
-	            $view->with('auth', Auth::user());
-	        });
-			*/
+            'default' => function($theme)
+            {
+                // $theme->asset()->usePath()->add('ipad', 'css/layouts/ipad.css');
+            }
 
-		},
+        )
 
-		'beforeRenderLayout' => array(
-
-			'mobile' => function($theme)
-			{
-				// $theme->asset()->themePath()->add('ipad', 'css/layouts/ipad.css');
-			}
-
-		)
-
-	)
+    )
 
 );

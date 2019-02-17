@@ -216,15 +216,15 @@ var options = {
     slideErrorClass: 'slide-error',
     // The class for the content element loaded into each slide:
     slideContentClass: 'slide-content',
-    // The class for the "toggle" control:
+    default
     toggleClass: 'toggle',
-    // The class for the "prev" control:
+    default
     prevClass: 'prev',
-    // The class for the "next" control:
+    default
     nextClass: 'next',
-    // The class for the "close" control:
+    default
     closeClass: 'close',
-    // The class for the "play-pause" toggle control:
+    default
     playPauseClass: 'play-pause',
     // The list object property (or data attribute) with the object type:
     typeProperty: 'type',

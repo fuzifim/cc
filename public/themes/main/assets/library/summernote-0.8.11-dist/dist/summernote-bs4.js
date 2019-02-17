@@ -737,13 +737,13 @@
   /**
    * @method isControlSizing
    *
-   * returns whether node is `note-control-sizing` or not.
+   * returns whether node is `note-default-sizing` or not.
    *
    * @param {Node} node
    * @return {Boolean}
    */
   function isControlSizing(node) {
-      return node && $$1(node).hasClass('note-control-sizing');
+      return node && $$1(node).hasClass('note-default-sizing');
   }
   /**
    * @method makePredByNodeName
@@ -4967,15 +4967,15 @@
           var _this = this;
           this.$handle = $$1([
               '<div class="note-handle">',
-              '<div class="note-control-selection">',
-              '<div class="note-control-selection-bg"></div>',
-              '<div class="note-control-holder note-control-nw"></div>',
-              '<div class="note-control-holder note-control-ne"></div>',
-              '<div class="note-control-holder note-control-sw"></div>',
+              '<div class="note-default-selection">',
+              '<div class="note-default-selection-bg"></div>',
+              '<div class="note-default-holder note-default-nw"></div>',
+              '<div class="note-default-holder note-default-ne"></div>',
+              '<div class="note-default-holder note-default-sw"></div>',
               '<div class="',
-              (this.options.disableResizeImage ? 'note-control-holder' : 'note-control-sizing'),
-              ' note-control-se"></div>',
-              (this.options.disableResizeImage ? '' : '<div class="note-control-selection-info"></div>'),
+              (this.options.disableResizeImage ? 'note-default-holder' : 'note-default-sizing'),
+              ' note-default-se"></div>',
+              (this.options.disableResizeImage ? '' : '<div class="note-default-selection-info"></div>'),
               '</div>',
               '</div>'
           ].join('')).prependTo(this.$editingArea);
@@ -4983,7 +4983,7 @@
               if (dom.isControlSizing(event.target)) {
                   event.preventDefault();
                   event.stopPropagation();
-                  var $target_1 = _this.$handle.find('.note-control-selection').data('target');
+                  var $target_1 = _this.$handle.find('.note-default-selection').data('target');
                   var posStart_1 = $target_1.offset();
                   var scrollTop_1 = _this.$document.scrollTop();
                   var onMouseMove_1 = function (event) {
@@ -5019,7 +5019,7 @@
               return false;
           }
           var isImage = dom.isImg(target);
-          var $selection = this.$handle.find('.note-control-selection');
+          var $selection = this.$handle.find('.note-default-selection');
           this.context.invoke('imagePopover.update', target);
           if (isImage) {
               var $image = $$1(target);
@@ -5043,7 +5043,7 @@
               var origImageObj = new Image();
               origImageObj.src = $image.attr('src');
               var sizingText = imageSize.w + 'x' + imageSize.h + ' (' + this.lang.image.original + ': ' + origImageObj.width + 'x' + origImageObj.height + ')';
-              $selection.find('.note-control-selection-info').text(sizingText);
+              $selection.find('.note-default-selection-info').text(sizingText);
               this.context.invoke('editor.saveTarget', target);
           }
           else {
@@ -6127,11 +6127,11 @@
           var body = [
               '<div class="form-group note-form-group">',
               "<label class=\"note-form-label\">" + this.lang.link.textToDisplay + "</label>",
-              '<input class="note-link-text form-control note-form-control note-input" type="text" />',
+              '<input class="note-link-text form-default note-form-default note-input" type="text" />',
               '</div>',
               '<div class="form-group note-form-group">',
               "<label class=\"note-form-label\">" + this.lang.link.url + "</label>",
-              '<input class="note-link-url form-control note-form-control note-input" type="text" value="http://" />',
+              '<input class="note-link-url form-default note-form-default note-input" type="text" value="http://" />',
               '</div>',
               !this.options.disableLinkTarget
                   ? $$1('<div/>').append(this.ui.checkbox({
@@ -6340,13 +6340,13 @@
           var body = [
               '<div class="form-group note-form-group note-group-select-from-files">',
               '<label class="note-form-label">' + this.lang.image.selectFromFiles + '</label>',
-              '<input class="note-image-input note-form-control note-input" ',
+              '<input class="note-image-input note-form-default note-input" ',
               ' type="file" name="files" accept="image/*" multiple="multiple" />',
               imageLimitation,
               '</div>',
               '<div class="form-group note-group-image-url" style="overflow:auto;">',
               '<label class="note-form-label">' + this.lang.image.url + '</label>',
-              '<input class="note-image-url form-control note-form-control note-input ',
+              '<input class="note-image-url form-default note-form-default note-input ',
               ' col-md-12" type="text" />',
               '</div>'
           ].join('');
@@ -6570,7 +6570,7 @@
           var body = [
               '<div class="form-group note-form-group row-fluid">',
               "<label class=\"note-form-label\">" + this.lang.video.url + " <small class=\"text-muted\">" + this.lang.video.providers + "</small></label>",
-              '<input class="note-video-url form-control note-form-control note-input" type="text" />',
+              '<input class="note-video-url form-default note-form-default note-input" type="text" />',
               '</div>'
           ].join('');
           var buttonClass = 'btn btn-primary note-btn note-btn-primary note-video-btn';

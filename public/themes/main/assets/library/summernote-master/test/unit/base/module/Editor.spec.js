@@ -64,7 +64,7 @@ describe('Editor', () => {
 
   if (env.isWebkit) {
     describe('undo and redo', () => {
-      it('should control history', () => {
+      it('should default history', () => {
         editor.insertText(' world');
         expectContents(context, '<p>hello world</p>');
 

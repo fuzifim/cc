@@ -92,7 +92,7 @@ class ConstructController extends Controller
                         $this->_channel_banner=json_decode($attribute->value);
                     }
                 }
-                Theme::uses('control')->layout('default');
+                Theme::uses('default')->layout('default');
             }else{
                 $this->_siteType='infoDomain';
             }

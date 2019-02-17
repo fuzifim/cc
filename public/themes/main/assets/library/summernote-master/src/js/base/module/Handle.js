@@ -30,15 +30,15 @@ export default class Handle {
   initialize() {
     this.$handle = $([
       '<div class="note-handle">',
-      '<div class="note-control-selection">',
-      '<div class="note-control-selection-bg"></div>',
-      '<div class="note-control-holder note-control-nw"></div>',
-      '<div class="note-control-holder note-control-ne"></div>',
-      '<div class="note-control-holder note-control-sw"></div>',
+      '<div class="note-default-selection">',
+      '<div class="note-default-selection-bg"></div>',
+      '<div class="note-default-holder note-default-nw"></div>',
+      '<div class="note-default-holder note-default-ne"></div>',
+      '<div class="note-default-holder note-default-sw"></div>',
       '<div class="',
-      (this.options.disableResizeImage ? 'note-control-holder' : 'note-control-sizing'),
-      ' note-control-se"></div>',
-      (this.options.disableResizeImage ? '' : '<div class="note-control-selection-info"></div>'),
+      (this.options.disableResizeImage ? 'note-default-holder' : 'note-default-sizing'),
+      ' note-default-se"></div>',
+      (this.options.disableResizeImage ? '' : '<div class="note-default-selection-info"></div>'),
       '</div>',
       '</div>'
     ].join('')).prependTo(this.$editingArea);
@@ -48,7 +48,7 @@ export default class Handle {
         event.preventDefault();
         event.stopPropagation();
 
-        const $target = this.$handle.find('.note-control-selection').data('target');
+        const $target = this.$handle.find('.note-default-selection').data('target');
         const posStart = $target.offset();
         const scrollTop = this.$document.scrollTop();
 
@@ -92,7 +92,7 @@ export default class Handle {
     }
 
     const isImage = dom.isImg(target);
-    const $selection = this.$handle.find('.note-control-selection');
+    const $selection = this.$handle.find('.note-default-selection');
 
     this.context.invoke('imagePopover.update', target);
 
@@ -122,7 +122,7 @@ export default class Handle {
       origImageObj.src = $image.attr('src');
 
       const sizingText = imageSize.w + 'x' + imageSize.h + ' (' + this.lang.image.original + ': ' + origImageObj.width + 'x' + origImageObj.height + ')';
-      $selection.find('.note-control-selection-info').text(sizingText);
+      $selection.find('.note-default-selection-info').text(sizingText);
       this.context.invoke('editor.saveTarget', target);
     } else {
       this.hide();

@@ -26,13 +26,13 @@ export default class ImageDialog {
     const body = [
       '<div class="form-group note-form-group note-group-select-from-files">',
       '<label class="note-form-label">' + this.lang.image.selectFromFiles + '</label>',
-      '<input class="note-image-input note-form-control note-input" ',
+      '<input class="note-image-input note-form-default note-input" ',
       ' type="file" name="files" accept="image/*" multiple="multiple" />',
       imageLimitation,
       '</div>',
       '<div class="form-group note-group-image-url" style="overflow:auto;">',
       '<label class="note-form-label">' + this.lang.image.url + '</label>',
-      '<input class="note-image-url form-control note-form-control note-input ',
+      '<input class="note-image-url form-default note-form-default note-input ',
       ' col-md-12" type="text" />',
       '</div>'
     ].join('');

@@ -6,7 +6,7 @@ return [
     'user_phone'=>env('USER_PHONE','+84963913349'),
     'user_password'=>env('USER_PASSWORD','$2y$10$Z1pzREkS1TuRS2.SOFXQau7i6tyot2U9KHwxic99APmbDn75rLfau'),
     'channel_name_master'=> env('CHANNEL_NAME_MASTER', 'Cung Cấp'),
-    'channel_description_master'=> env('CHANNEL_DESCRIPTION_MASTER', 'Channel description'),
+    'channel_description_master'=> env('CHANNEL_DESCRIPTION_MASTER', 'Cung Cấp đến mọi người ⭐ ⭐ ⭐ ⭐ ⭐'),
     'channel_status_master'=> env('CHANNEL_STATUS_MASTER', 'active'),
     'channel_user_id_master'=>env('CHANNEL_USER_ID_MASTER', 1),
     'channel_parent_master'=>env('CHANNEL_PARENT_MASTER', 0),

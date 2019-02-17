@@ -56,12 +56,8 @@ class IndexController extends ConstructController
             $this->_domain=$fixDomain;
             return $this->domainShow();
         }else if($this->_siteType=='infoChannel'){
-            if($this->_channel->channel_parent_id!=0){
-                $data=array();
-                return Theme::view('home', $data);
-            }else{
-                dd($this->_channel);
-            }
+            $data=array();
+            return Theme::view('home', $data);
         }
 	}
 	public function categoryList(Request $request){

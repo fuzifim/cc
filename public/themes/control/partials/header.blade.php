@@ -8,7 +8,7 @@
 		@if(!empty(Theme::get('canonical')))<link rel="canonical" href="{!! Theme::get('canonical') !!}" />@endif 
 		@if(!empty(Theme::get('canonicalamp')))<link rel="amphtml" href="{!! Theme::get('canonicalamp') !!}">@endif 
 		<meta name="author" content="{{$channel['info']->domain}}" />
-		<link rel="icon" href="@if(!empty($channel['info']->channelAttributeLogo->media->media_name)){{config('app.link_media').$channel['info']->channelAttributeLogo->media->media_path.'xs/'.$channel['info']->channelAttributeLogo->media->media_name}}@else {!!Theme::asset()->url('img/favicon.png')!!}?v=3 @endif" />
+		<link rel="icon" href="@if(!empty($channel['logo']->url_small)){{$channel['logo']->url_small}}@else {!!Theme::asset()->url('img/favicon.png')!!}?v=3 @endif" />
 		<meta name="_token" content="{{ csrf_token() }}">
 		<meta name="copyright" content="Copyright &copy {{date('Y')}} {{$channel['info']->domain}}.　All Right Reserved." />
 		<meta http-equiv="Content-Language" content="{{Lang::locale()}}" />
@@ -25,29 +25,29 @@
 		<meta property="og:image:height" content="480" />
 		@if(Theme::get('video'))<meta property="og:video" content="{!! Theme::get('video') !!}" />@endif
         {!! Theme::asset()->styles() !!}
-		<link media="all" type="text/css" rel="stylesheet" href="{!!Theme::asset()->url('css/style.default.css')!!}?v=57">
+		<link media="all" type="text/css" rel="stylesheet" href="{!!Theme::asset()->url('css/style.default.css')!!}?v=58">
 		<style>
-			@if(!empty($channel['color']->channelTitle)) 
-				section{background:{{$channel['color']->channelTitle}}; }  
-				.nav-bracket > li > a{color:{{$channel['color']->channelTitleText}}; }
-				.nav-bracket .children > li > a{color:{{$channel['color']->channelTitleText}}; }
-				.sidebartitle{color:{{$channel['color']->channelTitleText}}; }
-				.contentpanel .panel-primary .panel-heading{background-color:{{$channel['color']->channelTitle}} !important;border-color:{{$channel['color']->channelTitle}} !important;color:{{$channel['color']->channelTitleText}} !important;}
-				.contentpanel .panel-primary .heading-program .categoryParentTitle a{color:{{$channel['color']->channelTitleText}} !important;}
-				.contentpanel .panel-primary .heading-program .dropdown-toggle{color:{{$channel['color']->channelTitleText}} !important;}
+			@if(!empty($channel['color']->channel_menu))
+				section{background:{{$channel['color']->channel_menu}}; }
+				.nav-bracket > li > a{color:{{$channel['color']->channel_menu_text}}; }
+				.nav-bracket .children > li > a{color:{{$channel['color']->channel_menu_text}}; }
+				.sidebartitle{color:{{$channel['color']->channel_menu_text}}; }
+				.contentpanel .panel-primary .panel-heading{background-color:{{$channel['color']->channel_menu}} !important;border-color:{{$channel['color']->channel_menu}} !important;color:{{$channel['color']->channel_menu_text}} !important;}
+				.contentpanel .panel-primary .heading-program .categoryParentTitle a{color:{{$channel['color']->channel_menu_text}} !important;}
+				.contentpanel .panel-primary .heading-program .dropdown-toggle{color:{{$channel['color']->channel_menu_text}} !important;}
 			@else
 				.contentpanel .panel-primary{border-color:#d82731 !important;}
 				.contentpanel .panel-primary .panel-heading{background-color:#d82731 !important;border-color:#d82731 !important;}
 				.contentpanel .panel-primary .heading-program .categoryParentTitle a{color:#fff !important;}
 				.contentpanel .panel-primary .heading-program .dropdown-toggle{color:#fff !important;}
 			@endif
-			@if(!empty($channel['color']->channelMenu))
-				.pageheader h1{color:{{$channel['color']->channelMenuText}};}
-				.pageheader{background:{{$channel['color']->channelMenu}} !important;} 
+			@if(!empty($channel['color']->channel_title))
+				.pageheader h1{color:{{$channel['color']->channel_title_text}};}
+				.pageheader{background:{{$channel['color']->channel_title}} !important;}
 			@endif
-			@if(!empty($channel['color']->channelFooter))
-				.siteFooter{background:{{$channel['color']->channelFooter}} !important; color:{{$channel['color']->channelFooterText}}; }
-				.siteFooter h3 a{color:{{$channel['color']->channelFooterText}};}
+			@if(!empty($channel['color']->channel_footer))
+				.siteFooter{background:{{$channel['color']->channel_footer}} !important; color:{{$channel['color']->channel_footer_text}}; }
+				.siteFooter h3 a{color:{{$channel['color']->channel_footer_text}};}
 			@endif
 			@if(!empty($channel['info']->channelAttributeBackground->media->media_url))
 				body{background: url({{$channel['info']->channelAttributeBackground->media->media_url}}) !important; background-attachment: fixed !important; background-position:center top; background-size:cover; background-repeat:no-repeat;}
@@ -63,4 +63,4 @@
 	  js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=1506437109671064&autoLogAppEvents=1';
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
-    <body class="@if($channel['info']->channel_parent_id!=0) fixed @endif">
+    <body class="fixed">

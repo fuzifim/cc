@@ -11,6 +11,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 class User extends Eloquent implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
+    use EntrustUserTrait;
 	protected $connection = 'mongodb';
 	protected $collection = 'note'; 
 	protected $fillable = ['type','name', 'email', 'password','created_at','updated_at']; 

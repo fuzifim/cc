@@ -12,7 +12,7 @@
 	<div class="header-right">
 		<ul class="headermenu">
 			<li>
-				<a class="btn btn-default dropdown-toggle" href="{{route('index',$channel['info']->domain)}}"><i class="glyphicon glyphicon-home"></i> <span class="hidden-xs">@lang('main.home')</span></a>
+				<a class="btn btn-default dropdown-toggle" href="{{route('index',$channel['info']->domain)}}"><i class="glyphicon glyphicon-home"></i> <span class="hidden-xs"> @lang('main.home')</span></a>
 			</li>
 			@if (Auth::check())
 			@if($channel['info']->channel_parent_id!=0)

@@ -59,7 +59,7 @@ Theme::asset()->container('footer')->usePath()->add('swiper.min', 'library/swipe
 	<div class="contentpanel">
 		<div class="panel panel-dark panel-alt timeline-post">
 			<div class="panel-body">
-				<textarea placeholder="Bạn cung cấp gì?..." class="form-control"></textarea>
+				<textarea placeholder="@lang('main.what_do_you_provide')..." class="form-control"></textarea>
 			</div><!-- panel-body -->
 			<div class="panel-footer">
 				<div class="timeline-btns pull-left">
@@ -68,7 +68,7 @@ Theme::asset()->container('footer')->usePath()->add('swiper.min', 'library/swipe
 					<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Check In"><i class="glyphicon glyphicon-map-marker"></i></a>
 					<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Tag User"><i class="glyphicon glyphicon-user"></i></a>
 				</div><!--timeline-btns -->
-				<button class="btn btn-sm btn-primary pull-right">Đăng bài</button>
+				<button class="btn btn-sm btn-primary pull-right">@lang('main.share')</button>
 			</div><!-- panel-footer -->
 		</div>
 	</div>

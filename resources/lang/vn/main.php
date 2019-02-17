@@ -10,6 +10,10 @@ return [
     */
 
     'home' => 'Trang chủ',
+    'login'=>'Đăng nhập',
+    'search'=>'Tìm kiếm',
+    'share'=>'Chia sẻ',
+    'what_do_you_provide'=>'Bạn cung cấp gì?',
     'about_us' => 'Giới thiệu',
     'service' => 'Dịch vụ',
     'product' => 'Sản phẩm',

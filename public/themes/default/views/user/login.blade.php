@@ -45,7 +45,7 @@
 					</div>
 				</div>    
 				<div class="panel-footer text-right">
-					<button type="submit" class="btn btn-primary" id="btnLogin"><i class="fa fa-unlock-alt"></i> Đăng nhập</button>
+					<button type="submit" class="btn btn-primary" id="btnLogin"><i class="fa fa-unlock-alt"></i> @lang('main.login')</button>
 				</div>					
 			</div>
 		</form>

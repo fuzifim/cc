@@ -10,6 +10,10 @@ return [
     */
 
     'home' => 'Home',
+    'login'=> 'Login',
+    'search'=>'Search',
+    'share'=>'Share',
+    'what_do_you_provide'=>'What do you provide?',
     'about_us' => 'About us',
     'service' => 'Services',
     'product' => 'Products',

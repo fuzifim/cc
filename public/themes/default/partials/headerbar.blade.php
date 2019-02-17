@@ -2,9 +2,9 @@
 	<a class="menutoggle"><i class="fa fa-bars"></i></a>
 	<div itemscope itemtype="http://schema.org/WebSite"> 
 		<meta itemprop="url" content="{{route('index',$channel['info']->domain)}}"/>
-		<form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" id="searchform" class="searchform" action="{{route('index',$channel['info']->domain)}}" method="get">
+		<form itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" id="searchform" class="searchform" action="{{route('index',$channel['domain'])}}" method="get">
 			<meta itemprop="target" content="{{route('index',$channel['info']->domain)}}?v={v}"/>
-			<input itemprop="query-input"  type="text" class="form-control" name="v" id="searchAll" placeholder="Tìm kiếm..." />
+			<input itemprop="query-input"  type="text" class="form-control" name="v" id="searchAll" placeholder="@lang('main.search')..." />
 			<input type="hidden" name="t" id="searchType" value="">
 			<input type="hidden" name="i" id="searchId" value="">
 		</form>
@@ -55,7 +55,7 @@
 			@else
 			<li>
 				<div class="btn-group">
-					<a href="{{route('login',$channel['domain'])}}" class="btn btn-default dropdown-toggle"><span class="hidden-xs"><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</span><span class="visible-xs"><small><i class="glyphicon glyphicon-log-in"></i> Đăng nhập</small></span></a>
+					<a href="{{route('login',$channel['domain'])}}" class="btn btn-default dropdown-toggle"><span class="hidden-xs"><i class="glyphicon glyphicon-log-in"></i> @lang('main.login')</span><span class="visible-xs"><small><i class="glyphicon glyphicon-log-in"></i> @lang('main.login')</small></span></a>
 				</div>
 			</li>
 			@endif

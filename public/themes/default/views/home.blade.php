@@ -53,22 +53,44 @@ Theme::asset()->container('footer')->usePath()->add('home.script', 'js/master/ho
 	<div class="contentpanel">
 		<div class="panel panel-dark panel-alt timeline-post">
 			<div class="panel-body">
-				<textarea placeholder="@lang('main.what_do_you_provide')..." class="form-control"></textarea>
-				<div class="row row-pad-0 imageBoxOption hidden">
+				<textarea onkeyup="auto_grow(this)" placeholder="@lang('main.what_do_you_provide')..." class="form-control"></textarea>
+				<div class="row row-pad-0 boxOption imageBoxOption hidden">
 					<div class="col-md-6 col-xs-6">
 						<div class="image-wapper">
 							<div class="image-wapper-label">
-								Ảnh từ máy của bạn
+								@lang('main.photos_from_your_device')
 							</div>
 							<div class="image-wapper-take">
-								<div class="jfu-container" id=""><span class="jfu-btn-upload"><span><span style="position:relative; cursor:pointer"> <i class="fa fa-camera camera-add-image"></i><i class="fa fa-plus-circle plus-add-image"></i></span></span><input id="postMedia" name="postMedia[]" type="file" multiple="" class="input-file jfu-input-file" accept="image/*" data-bind="uploader: UploadOptions" id=""></span></div>
+								<div class="jfu-container" id=""><span class="jfu-btn-upload"><span><span style="position:relative; cursor:pointer"> <i class="fa fa-camera camera-add-image"></i><i class="fa fa-plus-circle plus-add-image"></i></span></span><input id="postMediaPhoto" name="postMediaPhoto[]" type="file" multiple="" class="input-file jfu-input-file" accept="image/*" data-bind="uploader: UploadOptions" id=""></span></div>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6 col-xs-6">
 						<div class="image-wapper-url">
 							<div class="image-wapper-label">
-								Ảnh từ đường dẫn
+								@lang('main.photos_from_links')
+							</div>
+							<div class="image-wapper-take">
+								<i class="fa fa-link camera-add-image"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row row-pad-0 boxOption videoBoxOption hidden">
+					<div class="col-md-6 col-xs-6">
+						<div class="image-wapper">
+							<div class="image-wapper-label">
+								@lang('main.videos_from_your_device')
+							</div>
+							<div class="image-wapper-take">
+								<div class="jfu-container" id=""><span class="jfu-btn-upload"><span><span style="position:relative; cursor:pointer"> <i class="fa fa-video-camera camera-add-image"></i></span></span><input id="postMediaVideo" name="postMediaVideo[]" type="file" multiple="" class="input-file jfu-input-file" accept="video/*" data-bind="uploader: UploadOptions" id=""></span></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-xs-6">
+						<div class="image-wapper-url">
+							<div class="image-wapper-label">
+								@lang('main.videos_from_links')
 							</div>
 							<div class="image-wapper-take">
 								<i class="fa fa-link camera-add-image"></i>
@@ -80,7 +102,7 @@ Theme::asset()->container('footer')->usePath()->add('home.script', 'js/master/ho
 			<div class="panel-footer">
 				<div class="timeline-btns pull-left">
 					<a href="" class="tooltips addImage" data-toggle="tooltip" title="" data-original-title="Add Photo"><i class="glyphicon glyphicon-picture"></i></a>
-					<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Add Video"><i class="glyphicon glyphicon-facetime-video"></i></a>
+					<a href="" class="tooltips addVideo" data-toggle="tooltip" title="" data-original-title="Add Video"><i class="glyphicon glyphicon-facetime-video"></i></a>
 					<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Check In"><i class="glyphicon glyphicon-map-marker"></i></a>
 					<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Tag User"><i class="glyphicon glyphicon-user"></i></a>
 				</div><!--timeline-btns -->

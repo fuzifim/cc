@@ -28,6 +28,7 @@ Theme::asset()->container('footer')->usePath()->add('bootstrap', 'js/bootstrap.m
 Theme::asset()->container('footer')->usePath()->add('jquery-migrate', 'js/jquery-migrate-1.2.1.min.js');
 Theme::asset()->container('footer')->usePath()->add('toggles', 'js/toggles.min.js');
 Theme::asset()->container('footer')->usePath()->add('jquery.cookies', 'js/jquery.cookies.js');
+Theme::asset()->container('footer')->usePath()->add('home.script', 'js/master/homeScript.js');
 ?>
 <section>
 {!!Theme::partial('leftpanel', array('title' => 'Header'))!!}
@@ -53,6 +54,28 @@ Theme::asset()->container('footer')->usePath()->add('jquery.cookies', 'js/jquery
 		<div class="panel panel-dark panel-alt timeline-post">
 			<div class="panel-body">
 				<textarea placeholder="@lang('main.what_do_you_provide')..." class="form-control"></textarea>
+				<div class="row row-pad-0 imageBoxOption hidden">
+					<div class="col-md-6 col-xs-6">
+						<div class="image-wapper">
+							<div class="image-wapper-label">
+								Ảnh từ máy của bạn
+							</div>
+							<div class="image-wapper-take">
+								<div class="jfu-container" id=""><span class="jfu-btn-upload"><span><span style="position:relative; cursor:pointer"> <i class="fa fa-camera camera-add-image"></i><i class="fa fa-plus-circle plus-add-image"></i></span></span><input id="postMedia" name="postMedia[]" type="file" multiple="" class="input-file jfu-input-file" accept="image/*" data-bind="uploader: UploadOptions" id=""></span></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-xs-6">
+						<div class="image-wapper-url">
+							<div class="image-wapper-label">
+								Ảnh từ đường dẫn
+							</div>
+							<div class="image-wapper-take">
+								<i class="fa fa-link camera-add-image"></i>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div><!-- panel-body -->
 			<div class="panel-footer">
 				<div class="timeline-btns pull-left">

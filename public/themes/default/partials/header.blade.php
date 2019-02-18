@@ -1,7 +1,4 @@
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <title>{!! Theme::get('title') !!}</title>
-        <meta charset="utf-8">
         <meta name="keywords" content="{!! Theme::get('keywords') !!}">
         <meta name="description" content="{!! Theme::get('description') !!}">
 		<meta name="robots" content="index,follow,noodp" />
@@ -55,12 +52,4 @@
 		</style>
 		@if(!empty($channel['color']->headerScript)){!!$channel['color']->headerScript!!}@endif 
     </head>
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=1506437109671064&autoLogAppEvents=1';
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
     <body class="fixed">

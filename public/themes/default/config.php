@@ -35,30 +35,12 @@ return array(
         // you want inheriting.
         'before' => function($theme)
         {
-            // You can remove this line anytime.
             $theme->setTitle('Copyright ©  2008 - Fuzifim');
-
-            // Breadcrumb template.
-            // $theme->breadcrumb()->setTemplate('
-            //     <ul class="breadcrumb">
-            //     @foreach ($crumbs as $i => $crumb)
-            //         @if ($i != (count($crumbs) - 1))
-            //         <li><a href="{{ $crumb["url"] }}">{!! $crumb["label"] !!}</a><span class="divider">/</span></li>
-            //         @else
-            //         <li class="active">{!! $crumb["label"] !!}</li>
-            //         @endif
-            //     @endforeach
-            //     </ul>
-            // ');
         },
-
-        // Listen on event before render a theme,
-        // this event should call to assign some assets,
-        // breadcrumb template.
         'beforeRenderTheme' => function($theme)
         {
             // You may use this event to set up your assets.
-            // $theme->asset()->usePath()->add('core', 'core.js');
+             $theme->asset()->usePath()->add('core', 'core.js');
             // $theme->asset()->add('jquery', 'vendor/jquery/jquery.min.js');
             // $theme->asset()->add('jquery-ui', 'vendor/jqueryui/jquery-ui.min.js', array('jquery'));
 

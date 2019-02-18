@@ -65,5 +65,5 @@
 		</div>
 	</div>
 	<?php
-	Theme::asset()->container('footer')->add('custom', 'js/custom.min.js?v=9');
+	Theme::asset()->container('footer')->add('custom', 'js/custom.js');
 	?>

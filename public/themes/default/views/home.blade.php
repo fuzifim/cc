@@ -24,18 +24,11 @@ if(!empty($channel['info']->channel_keywords)){
 Theme::setDescription(mb_substr(strip_tags(html_entity_decode($metaDescription),""), 0, 255));
 Theme::setCanonical(route("index",$channel["info"]->domain));
 Theme::asset()->container('footer')->usePath()->add('jquery', 'js/jquery-1.11.1.min.js');
-Theme::asset()->container('footer')->usePath()->add('jquery-migrate', 'js/jquery-migrate-1.2.1.min.js');
 Theme::asset()->container('footer')->usePath()->add('bootstrap', 'js/bootstrap.min.js');
-Theme::asset()->container('footer')->usePath()->add('modernizr', 'js/modernizr.min.js');
+Theme::asset()->container('footer')->usePath()->add('jquery-migrate', 'js/jquery-migrate-1.2.1.min.js');
 Theme::asset()->container('footer')->usePath()->add('toggles', 'js/toggles.min.js');
 Theme::asset()->container('footer')->usePath()->add('jquery.cookies', 'js/jquery.cookies.js');
-Theme::asset()->container('footer')->usePath()->add('jquery.gritter.min', 'js/jquery.gritter.min.js');
-Theme::asset()->container('footer')->usePath()->add('jquery.validate.min', 'js/jquery.validate.min.js');
-Theme::asset()->container('footer')->usePath()->add('swiper.min', 'library/swiper/js/swiper.min.js');
 ?>
-@if(Auth::check())
-
-@endif
 <section>
 {!!Theme::partial('leftpanel', array('title' => 'Header'))!!}
 <div class="mainpanel">
@@ -63,7 +56,7 @@ Theme::asset()->container('footer')->usePath()->add('swiper.min', 'library/swipe
 			</div><!-- panel-body -->
 			<div class="panel-footer">
 				<div class="timeline-btns pull-left">
-					<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Add Photo"><i class="glyphicon glyphicon-picture"></i></a>
+					<a href="" class="tooltips addImage" data-toggle="tooltip" title="" data-original-title="Add Photo"><i class="glyphicon glyphicon-picture"></i></a>
 					<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Add Video"><i class="glyphicon glyphicon-facetime-video"></i></a>
 					<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Check In"><i class="glyphicon glyphicon-map-marker"></i></a>
 					<a href="" class="tooltips" data-toggle="tooltip" title="" data-original-title="Tag User"><i class="glyphicon glyphicon-user"></i></a>

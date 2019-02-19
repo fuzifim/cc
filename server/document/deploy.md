@@ -14,6 +14,14 @@ if (defined('INTL_IDNA_VARIANT_UTS46')) {
     $output = idn_to_utf8($domain);
 }
 ```
+#### Run 
+```
+php artisan migrate 
+npm i -g npm-check-updates
+npm-check-updates -u
+npm install
+npm install cross-env
+```
 #### Channel Config 
 
 - Channel Color: 

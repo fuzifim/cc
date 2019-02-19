@@ -25,3 +25,5 @@ if ! sudo mysql -u root -e "use ${DATABASE}"; then
     sudo mysql -u root -e "GRANT ALL PRIVILEGES ON ${DATABASE}.* TO '${USERDATA}'@'localhost';"
     sudo mysql -u root -e "FLUSH PRIVILEGES;"
 fi
+curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+sudo yum install -y nodejs

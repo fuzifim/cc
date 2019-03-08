@@ -10,6 +10,8 @@ return [
     */
 
     'home' => 'Trang chủ',
+    'provided'=>'Cung Cấp',
+    'to_everyone'=>'đến mọi người',
     'login'=>'Đăng nhập',
     'search'=>'Tìm kiếm',
     'share'=>'Chia sẻ',

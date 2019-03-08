@@ -10,6 +10,8 @@ return [
     */
 
     'home' => 'Home',
+    'provided'=>'Provided',
+    'to_everyone'=>'to everyone',
     'login'=> 'Login',
     'search'=>'Search',
     'share'=>'Share',

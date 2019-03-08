@@ -10,16 +10,6 @@ jQuery(window).load(function() {
 });
 
 jQuery(document).ready(function() {
-   
-   "use strict"; 
-   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-6369288-1', 'auto');
-	  ga('send', 'pageview');
-
    $(window).scroll(function() {
 		if($(window).scrollTop() + $(window).height() >= $('.section-content').height()) {
 			var curentPage = parseInt($("#curentPage").val());
@@ -59,11 +49,7 @@ jQuery(document).ready(function() {
 				//jQuery('.mainpanel').height(docHeight);
 			}
 		});
-	} 
-   $(".listItem img.lazy").each(function(){
-		$(this).attr("data-src", $(this).attr("src"));
-		$(this).attr("src", "http://cungcap.net/themes/default/assets/images/loaders/loader5.gif");
-	});
+	}
    // Toggle Left Menu
    jQuery('.leftpanel .nav-parent > a').live('click', function() {
       
@@ -422,15 +408,14 @@ jQuery(document).ready(function() {
 	   } 
 
 	});
-	var rootUrl=$('meta[name=root]').attr('content'); 
-	getSelect(); 
+	var channel_domain=$('meta[name=root]').attr('content');
 	$('footer').on("click","#viewSelect",function() {
 		showSelect(); 
 	}); 
 	function getSelect(){
 		$('footer .showInfoSelect').empty(); 
 		$.ajax({
-			url: rootUrl+"/select/get",
+			url: channel_domain+"/select/get",
 			headers: {'X-CSRF-TOKEN': $('meta[name=_token]').attr('content')},
 			type: 'GET',
 			cache: false,

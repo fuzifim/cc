@@ -1,4 +1,5 @@
         <title>{!! Theme::get('title') !!}</title>
+		<meta name="root" content="{{$channel['domain']}}">
         <meta name="keywords" content="{!! Theme::get('keywords') !!}">
         <meta name="description" content="{!! Theme::get('description') !!}">
 		<meta name="robots" content="index,follow,noodp" />
@@ -53,3 +54,6 @@
 		@if(!empty($channel['color']->headerScript)){!!$channel['color']->headerScript!!}@endif 
     </head>
     <body class="fixed">
+	<script>
+		var channel_domain='{{$channel['domain']}}';
+	</script>
